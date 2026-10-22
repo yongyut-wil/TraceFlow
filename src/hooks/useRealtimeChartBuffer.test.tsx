@@ -213,6 +213,76 @@ describe('useRealtimeChartBuffer', () => {
     expect(result.current.bufferRef.current.length).toBe(1);
   });
 
+  it('should retain only the newest points at the literal 10,000 cap', async () => {
+    const chartRef = makeChartRef();
+    const { result } = renderHook(
+      () =>
+        useRealtimeChartBuffer({
+          chartRef,
+          siteId: 'test',
+          metric: 'latency_ms',
+          range: '24h',
+          from: new Date(0),
+          to: new Date(1000),
+          seriesId: 'primary',
+          mode: 'mock',
+        }),
+      { wrapper }
+    );
+
+    await act(async () => {
+      await Promise.resolve();
+      await vi.advanceTimersByTimeAsync(10);
+    });
+
+    // Push 12,000 points into the 10,000-cap buffer (spec literal).
+    const flood: TimeSeriesPoint[] = Array.from({ length: 12_000 }, (_, i) => [2000 + i, i]);
+    await act(async () => {
+      batchCallback(flood);
+      await vi.advanceTimersByTimeAsync(10);
+    });
+
+    const buf = result.current.bufferRef.current;
+    expect(buf.length).toBe(10_000);
+    expect(buf[0][0]).toBe(4000); // oldest = pushed index 2000
+    expect(buf[9_999][0]).toBe(13_999);
+  });
+
+  it('should flush buffer to the chart via setOption', async () => {
+    const chartRef = makeChartRef();
+    renderHook(
+      () =>
+        useRealtimeChartBuffer({
+          chartRef,
+          siteId: 'test',
+          metric: 'latency_ms',
+          range: '24h',
+          from: new Date(0),
+          to: new Date(1000),
+          seriesId: 'primary',
+          mode: 'mock',
+        }),
+      { wrapper }
+    );
+
+    await act(async () => {
+      await Promise.resolve();
+      await vi.advanceTimersByTimeAsync(10);
+    });
+
+    await act(async () => {
+      batchCallback([[1100, 60]]);
+      await vi.advanceTimersByTimeAsync(300);
+    });
+
+    expect(chartRef.current!.setOption).toHaveBeenCalledWith(
+      expect.objectContaining({
+        series: [expect.objectContaining({ id: 'primary', data: expect.any(Array) })],
+      }),
+      { notMerge: false, lazyUpdate: true }
+    );
+  });
+
   it('should publish throttled stats (last value + anomalies) on flush', async () => {
     const chartRef = makeChartRef();
     const { result } = renderHook(
