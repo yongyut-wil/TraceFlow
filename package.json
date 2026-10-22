@@ -1,7 +1,9 @@
 {
   "name": "traceflow-app",
-  "version": "0.1.0",
+  "version": "0.3.0",
+  "description": "Mission-control real-time telemetry dashboard — 10k-point ring buffer, LTTB ECharts, hybrid Supabase/mock data layer",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

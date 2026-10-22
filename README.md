@@ -1,6 +1,8 @@
 <div align="center">
 
-# 🟦 TraceFlow
+<img src="docs/assets/logo.svg" alt="TraceFlow logo" width="64">
+
+# TraceFlow
 
 **Mission-control real-time telemetry dashboard**
 
