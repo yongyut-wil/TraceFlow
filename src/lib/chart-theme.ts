@@ -8,6 +8,7 @@ export const CHART_COLORS = {
   panel3: '#1A2438',
   border: '#1E293B',
   borderAccent: '#334155',
+  gridLine: 'rgba(30, 41, 59, 0.55)',
   textPrimary: '#F8FAFC',
   textSecondary: '#94A3B8',
   accent: '#00E5FF',

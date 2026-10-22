@@ -42,14 +42,14 @@ export function PrimaryTelemetryChart({ chartRef, metric, thresholdWarning, thre
       xAxis: {
         type: 'time',
         axisLine: { lineStyle: { color: CHART_COLORS.border } },
-        splitLine: { show: true, lineStyle: { color: CHART_COLORS.border, type: 'dotted' } },
+        splitLine: { show: true, lineStyle: { color: CHART_COLORS.gridLine, type: 'dotted' } },
         axisLabel: { color: CHART_COLORS.textSecondary, fontFamily: CHART_FONT, fontSize: 10, formatter: '{HH}:{mm}:{ss}' },
       },
       yAxis: {
         type: 'value',
         scale: true,
         axisLine: { show: false },
-        splitLine: { show: true, lineStyle: { color: CHART_COLORS.border, type: 'dotted' } },
+        splitLine: { show: true, lineStyle: { color: CHART_COLORS.gridLine, type: 'dotted' } },
         axisLabel: { color: CHART_COLORS.textSecondary, fontFamily: CHART_FONT, fontSize: 10 },
       },
       dataZoom: [
@@ -69,6 +69,15 @@ export function PrimaryTelemetryChart({ chartRef, metric, thresholdWarning, thre
           animation: false,
           lineStyle: { color: CHART_COLORS.accent, width: 1.5 },
           itemStyle: { color: CHART_COLORS.accent },
+          areaStyle: {
+            color: {
+              type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
+              colorStops: [
+                { offset: 0, color: 'rgba(0, 229, 255, 0.16)' },
+                { offset: 1, color: 'rgba(0, 229, 255, 0)' },
+              ],
+            },
+          },
           ...(markLineData.length > 0 && {
             markLine: {
               silent: true,
@@ -86,6 +95,7 @@ export function PrimaryTelemetryChart({ chartRef, metric, thresholdWarning, thre
     <div className="flex h-[400px] flex-col border-b border-border bg-card shrink-0">
       <div className="flex h-8 items-center justify-between border-b border-border bg-muted/30 px-3">
         <div className="flex items-center gap-2">
+          <span className="h-2 w-0.5 bg-primary" />
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-foreground">Primary Telemetry Signal</span>
           <span className="font-mono text-[9px] text-muted-foreground">{metric} · HISTORICAL + LIVE STREAM</span>
         </div>

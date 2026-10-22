@@ -31,6 +31,7 @@ export function AnomalyStreamTable({ anomalies, siteId, unit, status, onInspect 
     <div className="flex h-[250px] flex-col bg-card shrink-0">
       <div className="flex h-8 items-center justify-between border-b border-border bg-muted/30 px-3">
         <div className="flex items-center gap-2">
+          <span className="h-2 w-0.5 bg-warn" />
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-foreground">Anomaly & Trace Inspector</span>
         </div>
         <div className="font-mono text-[9px] text-muted-foreground">LIVE FEED · {anomalies.length} EVENTS</div>
