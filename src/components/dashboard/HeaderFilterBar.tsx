@@ -74,7 +74,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
     }`;
 
   const dateInputClass =
-    'h-7 rounded-none border border-border bg-background px-2 font-mono text-[10px] text-foreground';
+    'h-7 rounded-none border border-edge bg-background px-2 font-mono text-[10px] text-foreground';
 
   return (
     <header className="flex min-h-14 flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b border-border bg-card px-4 py-1 shrink-0">
@@ -89,7 +89,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
         <div className="h-4 w-px bg-border" />
 
         <Select value={siteId} onValueChange={(v) => v && setParams({ siteId: v })}>
-          <SelectTrigger className="h-7 w-40 rounded-none border-border bg-muted/50 font-mono text-xs">
+          <SelectTrigger className="h-7 w-40 rounded-none border-edge bg-muted/50 font-mono text-xs">
             <SelectValue placeholder="Node" />
           </SelectTrigger>
           <SelectContent className="rounded-none border-border bg-popover">
@@ -99,7 +99,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
         </Select>
 
         <Select value={metric} onValueChange={(v) => v && setParams({ metric: v })}>
-          <SelectTrigger className="h-7 w-44 rounded-none border-border bg-muted/50 font-mono text-xs">
+          <SelectTrigger className="h-7 w-44 rounded-none border-edge bg-muted/50 font-mono text-xs">
             <SelectValue placeholder="Metric" />
           </SelectTrigger>
           <SelectContent className="rounded-none border-border bg-popover">
@@ -110,7 +110,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
         </Select>
 
         <Select value={compare} onValueChange={(v) => v && setParams({ compare: v as typeof compare })}>
-          <SelectTrigger className="h-7 w-40 rounded-none border-border bg-muted/50 font-mono text-xs">
+          <SelectTrigger className="h-7 w-40 rounded-none border-edge bg-muted/50 font-mono text-xs">
             <SelectValue placeholder="Compare" />
           </SelectTrigger>
           <SelectContent className="rounded-none border-border bg-popover">
@@ -120,7 +120,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
           </SelectContent>
         </Select>
 
-        <div className="flex h-7 items-center rounded-none border border-border bg-muted/50 p-0.5">
+        <div className="flex h-7 items-center rounded-none border border-edge bg-muted/50 p-0.5">
           {TIME_RANGES.map(r =>
             r === 'custom' ? (
               <Popover key={r}>
@@ -162,7 +162,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
         </div>
 
         <Select value={mode} onValueChange={(v) => v && setParams({ mode: v as typeof mode })}>
-          <SelectTrigger className="h-7 w-32 rounded-none border-border bg-muted/50 font-mono text-xs">
+          <SelectTrigger className="h-7 w-32 rounded-none border-edge bg-muted/50 font-mono text-xs">
             <SelectValue placeholder="Mode" />
           </SelectTrigger>
           <SelectContent className="rounded-none border-border bg-popover">
@@ -208,7 +208,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
           variant="outline"
           size="sm"
           onClick={onTogglePause}
-          className="h-7 rounded-none border-border font-mono text-xs uppercase"
+          className="h-7 rounded-none border-edge font-mono text-xs uppercase"
         >
           {isPaused ? <Play className="mr-1 h-3 w-3" /> : <Pause className="mr-1 h-3 w-3" />}
           {isPaused ? 'Resume' : 'Pause'}

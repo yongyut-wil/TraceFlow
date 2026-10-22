@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ArrowDownRight, ArrowUpRight, Activity, AlertTriangle } from 'lucide-react';
+import { Zap, TrendingUp, Sigma, AlertTriangle } from 'lucide-react';
 import type { BufferStats } from '@/lib/data/contracts';
 
 interface KpiCardsProps {
@@ -22,7 +22,7 @@ export function KpiCards({ stats, unit, isLoading }: KpiCardsProps) {
     {
       title: 'Current Value',
       accent: 'border-l-live',
-      icon: <ArrowDownRight className="h-3 w-3 text-live" />,
+      icon: <Zap className="h-3 w-3 text-live" />,
       value: isLoading ? '--' : fmt(stats.last),
       unit,
       sub: `live · ${stats.count.toLocaleString()} pts buffered`,
@@ -31,7 +31,7 @@ export function KpiCards({ stats, unit, isLoading }: KpiCardsProps) {
     {
       title: 'Window Mean',
       accent: 'border-l-secondary',
-      icon: <Activity className="h-3 w-3 text-secondary" />,
+      icon: <Sigma className="h-3 w-3 text-secondary" />,
       value: isLoading ? '--' : fmt(stats.count > 0 ? stats.avg : null),
       unit,
       sub: `mean over buffer window`,
@@ -40,7 +40,7 @@ export function KpiCards({ stats, unit, isLoading }: KpiCardsProps) {
     {
       title: 'Peak',
       accent: 'border-l-primary',
-      icon: <ArrowUpRight className="h-3 w-3 text-primary" />,
+      icon: <TrendingUp className="h-3 w-3 text-primary" />,
       value: isLoading ? '--' : fmt(stats.count > 0 ? stats.max : null),
       unit,
       sub: 'max in window',
