@@ -15,8 +15,14 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: "TraceFlow — Mission Control",
-  description: "High-performance real-time telemetry dashboard",
+  description: "Mission-control real-time telemetry dashboard — 10k-point ring buffer, LTTB ECharts, hybrid Supabase/mock data layer",
+  openGraph: {
+    title: "TraceFlow — Mission Control",
+    description: "Mission-control real-time telemetry dashboard",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

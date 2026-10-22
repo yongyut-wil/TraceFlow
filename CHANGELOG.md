@@ -16,6 +16,9 @@ visual refinement pass. Closes ISSUE-008, ISSUE-009, ISSUE-010.
   panel headers, gradient area fills under both chart traces (ISSUE-009)
 - `--edge` border tier (`#334155`) marking interactive controls vs structural
   hairlines (ISSUE-010)
+- Brand assets: `src/app/icon.svg` (cyan waveform mark), `opengraph-image.png`,
+  `LICENSE` (MIT), README rewrite with live-demo GIF, `.env.example` runtime
+  vars docs; `package.json` version/description aligned to 0.3.0
 
 ### Changed
 - label-caps elements use `tracking-[0.08em]` per spec (was `tracking-wider`)
