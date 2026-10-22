@@ -13,6 +13,7 @@ files live in this directory, and status is mirrored here and in `CHANGELOG.md`.
 | [ISSUE-006](006-security-config-hardening.md) | Security headers, dep hygiene, channel sanitize, ssr client | Low | � Done | `release/0.2.0` |
 | [ISSUE-007](007-query-correctness.md) | Focus refetch resets buffer; source resolved in render; metric heuristic | Medium | � Done | `release/0.2.0` |
 | [ISSUE-008](008-ui-polish-pack.md) | Responsive nits (select truncation, markLine clip, table width, touch targets) + token hygiene | Low | 🟢 Done | `fix/issue-008-ui-polish` |
+| [ISSUE-009](009-aesthetic-refinement.md) | Flat surfaces, bare neon trace, no signal linkage in KPI/panels | Low | 🟢 Done | `fix/issue-009-aesthetic-refinement` |
 
 **Status legend:** 🔵 Open · 🟡 In progress · 🟢 Done (merged) · ⚪ Won't fix
 

@@ -6,11 +6,14 @@ versioning follows SemVer.
 ## [Unreleased]
 
 Post-release polish from the 13-viewport responsive audit + design-system
-token audit — closes ISSUE-008.
+token audit — closes ISSUE-008 and ISSUE-009.
 
 ### Added
 - `--live`/`--warn`/`--crit` signal-color tokens (`#10B981`/`#F59E0B`/`#F43F5E`)
   replacing scattered Tailwind emerald/amber/rose literals (ISSUE-008)
+- `--raised` surface tier (`#101B2C`) for KPI cards (ISSUE-009)
+- Signal-linked visual devices: KPI left borders per metric, accent ticks on
+  panel headers, gradient area fills under both chart traces (ISSUE-009)
 
 ### Changed
 - label-caps elements use `tracking-[0.08em]` per spec (was `tracking-wider`)
