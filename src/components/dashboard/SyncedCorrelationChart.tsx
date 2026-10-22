@@ -37,7 +37,7 @@ export function SyncedCorrelationChart({ chartRef, metric, status }: SyncedCorre
       type: 'value',
       scale: true,
       axisLine: { show: false },
-      splitLine: { show: true, lineStyle: { color: CHART_COLORS.border, type: 'dotted' } },
+      splitLine: { show: true, lineStyle: { color: CHART_COLORS.gridLine, type: 'dotted' } },
       axisLabel: { color: CHART_COLORS.textSecondary, fontFamily: CHART_FONT, fontSize: 10 },
     },
     series: [
@@ -53,7 +53,15 @@ export function SyncedCorrelationChart({ chartRef, metric, status }: SyncedCorre
         animation: false,
         lineStyle: { color: CHART_COLORS.secondary, width: 1.2 },
         itemStyle: { color: CHART_COLORS.secondary },
-        areaStyle: { color: 'rgba(129, 140, 248, 0.08)' },
+        areaStyle: {
+          color: {
+            type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
+            colorStops: [
+              { offset: 0, color: 'rgba(129, 140, 248, 0.18)' },
+              { offset: 1, color: 'rgba(129, 140, 248, 0)' },
+            ],
+          },
+        },
         data: [],
       },
     ],
@@ -63,6 +71,7 @@ export function SyncedCorrelationChart({ chartRef, metric, status }: SyncedCorre
     <div className="flex h-[250px] flex-col border-r border-border bg-card shrink-0">
       <div className="flex h-8 items-center justify-between border-b border-border bg-muted/30 px-3">
         <div className="flex items-center gap-2">
+          <span className="h-2 w-0.5 bg-secondary" />
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-foreground">Correlation Chart</span>
           <span className="font-mono text-[9px] text-muted-foreground">{metric} · SYNCED CROSSHAIR</span>
         </div>
