@@ -59,22 +59,26 @@ solving all three:
 
 ## Architecture
 
-```mermaid
-flowchart TD
-    U["🔗 nuqs URL state<br/>siteId · metric · compare · range · mode"]
+```
+ nuqs URL state                getDataSource()
+ siteId · metric · compare ──► (env mode) ──┬─ mock/no creds ─► MockDataSource
+ range · mode · from · to                   │                 10k deterministic
+                                           │                 + wall-clock stream
+                                           │
+                                           └─ supabase ──────► SupabaseDataSource
+                                                              PostgREST + Realtime
 
-    U --> D{"getDataSource<br/><i>env mode</i>"}
-
-    D -->|"mock / no creds"| M["MockDataSource<br/>10k deterministic + wall-clock stream"]
-    D -->|"supabase"| S["SupabaseDataSource<br/>PostgREST + Realtime broadcast"]
-
-    M -->|"zod-validated tuples"| B["useRef ring buffer<br/>10k cap · timestamp dedup"]
-    S -->|"zod-validated tuples"| B
-
-    B --> F["⏱ rAF flush · 250ms"]
-
-    F --> E1["Primary signal<br/>LTTB · markLines · dataZoom"]
-    F --> E2["Correlation chart<br/><i>echarts.connect — synced crosshair</i>"]
+                                          zod-validated tuples
+                                                     │
+                                                     ▼
+                                    useRef ring buffer (10k cap · ts dedup)
+                                                     │
+                                              rAF flush · 250ms
+                                                     │
+                              ┌──────────────────────┴──────────────────────┐
+                              ▼                                             ▼
+                    Primary signal                            Correlation chart
+                    LTTB · markLines · dataZoom               echarts.connect — synced
 ```
 
 **Data contract** — zero-transformation tuples, validated at the boundary:
