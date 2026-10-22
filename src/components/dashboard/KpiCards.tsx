@@ -21,11 +21,11 @@ export function KpiCards({ stats, unit, isLoading }: KpiCardsProps) {
   const cards = [
     {
       title: 'Current Value',
-      icon: <ArrowDownRight className="h-3 w-3 text-emerald-500" />,
+      icon: <ArrowDownRight className="h-3 w-3 text-live" />,
       value: isLoading ? '--' : fmt(stats.last),
       unit,
       sub: `live · ${stats.count.toLocaleString()} pts buffered`,
-      subClass: 'text-emerald-500',
+      subClass: 'text-live',
     },
     {
       title: 'Window Mean',
@@ -45,20 +45,20 @@ export function KpiCards({ stats, unit, isLoading }: KpiCardsProps) {
     },
     {
       title: 'Anomalies',
-      icon: <AlertTriangle className="h-3 w-3 text-amber-500" />,
+      icon: <AlertTriangle className="h-3 w-3 text-warn" />,
       value: isLoading ? '--' : stats.anomalies.length.toLocaleString(),
       unit: '',
       sub: `${critCount} CRIT · newest ≤50 retained`,
-      subClass: 'text-amber-500',
+      subClass: 'text-warn',
     },
   ];
 
   return (
-    <div className="grid shrink-0 grid-cols-2 gap-3 p-3 md:grid-cols-4">
+    <div className="grid shrink-0 grid-cols-2 gap-2 p-2 md:grid-cols-4 md:gap-3 md:p-3">
       {cards.map((c) => (
         <Card key={c.title} className="rounded-none border-border bg-card shadow-none">
           <CardHeader className="flex flex-row items-center justify-between border-b border-border bg-muted/30 px-3 py-2">
-            <CardTitle className="font-mono text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            <CardTitle className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
               {c.title}
             </CardTitle>
             {c.icon}
@@ -67,7 +67,7 @@ export function KpiCards({ stats, unit, isLoading }: KpiCardsProps) {
             {isLoading ? (
               <Skeleton className="h-8 w-24 rounded-none" />
             ) : (
-              <div className="font-mono text-2xl font-medium text-foreground">
+              <div className={`font-mono text-2xl font-medium ${c.value === '--' ? 'text-dim' : 'text-foreground'}`}>
                 {c.value} <span className="text-sm text-muted-foreground">{c.unit}</span>
               </div>
             )}

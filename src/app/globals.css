@@ -28,6 +28,10 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
+  --color-live: var(--live);
+  --color-warn: var(--warn);
+  --color-crit: var(--crit);
+
   --radius-sm: 0;
   --radius-md: 0;
   --radius-lg: 0;
@@ -54,6 +58,9 @@
   --border: #1E293B;
   --input: #1E293B;
   --ring: #00E5FF;
+  --live: #10B981;
+  --warn: #F59E0B;
+  --crit: #F43F5E;
 }
 
 @layer base {

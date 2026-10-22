@@ -19,12 +19,12 @@ export function PrimaryTelemetryChart({ chartRef, metric, thresholdWarning, thre
       thresholdWarning !== undefined && {
         yAxis: thresholdWarning,
         lineStyle: { color: CHART_COLORS.warn },
-        label: { show: true, position: 'insideEndTop' as const, formatter: `WARN ${thresholdWarning}ms`, color: CHART_COLORS.warn, fontFamily: CHART_FONT, fontSize: 9 },
+        label: { show: true, position: 'insideStartTop' as const, formatter: `WARN ${thresholdWarning}ms`, color: CHART_COLORS.warn, fontFamily: CHART_FONT, fontSize: 9 },
       },
       thresholdCritical !== undefined && {
         yAxis: thresholdCritical,
         lineStyle: { color: CHART_COLORS.crit },
-        label: { show: true, position: 'insideEndTop' as const, formatter: `CRIT ${thresholdCritical}ms`, color: CHART_COLORS.crit, fontFamily: CHART_FONT, fontSize: 9 },
+        label: { show: true, position: 'insideStartTop' as const, formatter: `CRIT ${thresholdCritical}ms`, color: CHART_COLORS.crit, fontFamily: CHART_FONT, fontSize: 9 },
       },
     ].filter((d): d is NonNullable<typeof d> => Boolean(d));
 
@@ -86,7 +86,7 @@ export function PrimaryTelemetryChart({ chartRef, metric, thresholdWarning, thre
     <div className="flex h-[400px] flex-col border-b border-border bg-card shrink-0">
       <div className="flex h-8 items-center justify-between border-b border-border bg-muted/30 px-3">
         <div className="flex items-center gap-2">
-          <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-foreground">Primary Telemetry Signal</span>
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-foreground">Primary Telemetry Signal</span>
           <span className="font-mono text-[9px] text-muted-foreground">{metric} · HISTORICAL + LIVE STREAM</span>
         </div>
         <div className="font-mono text-[9px] text-muted-foreground">LTTB · CANVAS · 10K PTS</div>
