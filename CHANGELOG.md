@@ -3,6 +3,32 @@
 All notable changes to TraceFlow. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 versioning follows SemVer.
 
+## [Unreleased]
+
+Post-release polish from the 13-viewport responsive audit + design-system
+token audit — closes ISSUE-008.
+
+### Added
+- `--live`/`--warn`/`--crit` signal-color tokens (`#10B981`/`#F59E0B`/`#F43F5E`)
+  replacing scattered Tailwind emerald/amber/rose literals (ISSUE-008)
+
+### Changed
+- label-caps elements use `tracking-[0.08em]` per spec (was `tracking-wider`)
+- `--` KPI placeholders and the anomaly empty state use the `text-dim`
+  (`#475569`) tier so the third text token is no longer dead (ISSUE-008)
+- Disconnected status badge shows `WifiOff` instead of `Activity` (ISSUE-008)
+
+### Fixed
+- Compare select `throughput_rps` truncated at ≤1440px — trigger widened
+- markLine labels clipped at the right canvas edge on ≤390px — moved to
+  `insideStartTop` (ISSUE-008)
+- Anomaly table min-width ~417px forced horizontal scroll on phones; cell
+  padding now `px-2 sm:px-3` so the table fits 360px+ (ISSUE-008)
+- `ZoomIn` row action `h-5 w-5` (20px) → `h-6 w-6` (24px) to meet WCAG 2.5.8
+  touch-target minimum (ISSUE-008)
+- SEV badge `text-[8px]` was below the spec floor (9px) (ISSUE-008)
+- KPI grid gutter 12px → 8px on mobile per spacing spec (ISSUE-008)
+
 ## [0.2.0] - 2025-10-22
 
 Post-review fix train — closes ISSUE-001 through ISSUE-007 (see `docs/issues/`).

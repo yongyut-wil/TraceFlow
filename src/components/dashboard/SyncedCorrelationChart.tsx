@@ -63,7 +63,7 @@ export function SyncedCorrelationChart({ chartRef, metric, status }: SyncedCorre
     <div className="flex h-[250px] flex-col border-r border-border bg-card shrink-0">
       <div className="flex h-8 items-center justify-between border-b border-border bg-muted/30 px-3">
         <div className="flex items-center gap-2">
-          <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-foreground">Correlation Chart</span>
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-foreground">Correlation Chart</span>
           <span className="font-mono text-[9px] text-muted-foreground">{metric} · SYNCED CROSSHAIR</span>
         </div>
         <div className="font-mono text-[9px] uppercase text-muted-foreground">{status}</div>

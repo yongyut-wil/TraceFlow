@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Activity, Pause, Play, Database } from 'lucide-react';
+import { Activity, Pause, Play, Database, WifiOff } from 'lucide-react';
 import type { ConnectionStatus, ResolvedSourceMode } from '@/lib/data/contracts';
 
 interface HeaderFilterBarProps {
@@ -20,15 +20,15 @@ interface HeaderFilterBarProps {
 const SOURCE_BADGE: Record<ResolvedSourceMode, { label: string; className: string }> = {
   supabase: {
     label: 'SUPABASE LIVE',
-    className: 'border-emerald-500/50 bg-emerald-500/10 text-emerald-500',
+    className: 'border-live/50 bg-live/10 text-live',
   },
   mock: {
     label: 'MOCK STREAM',
-    className: 'border-amber-500/50 bg-amber-500/10 text-amber-500',
+    className: 'border-warn/50 bg-warn/10 text-warn',
   },
   error: {
     label: 'SOURCE ERROR',
-    className: 'border-rose-500/50 bg-rose-500/10 text-rose-500',
+    className: 'border-crit/50 bg-crit/10 text-crit',
   },
 };
 
@@ -69,7 +69,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
   };
 
   const rangeBtnClass = (active: boolean) =>
-    `px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring ${
+    `px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring ${
       active ? 'bg-accent text-primary' : 'text-muted-foreground hover:text-foreground'
     }`;
 
@@ -110,7 +110,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
         </Select>
 
         <Select value={compare} onValueChange={(v) => v && setParams({ compare: v as typeof compare })}>
-          <SelectTrigger className="h-7 w-32 rounded-none border-border bg-muted/50 font-mono text-xs">
+          <SelectTrigger className="h-7 w-40 rounded-none border-border bg-muted/50 font-mono text-xs">
             <SelectValue placeholder="Compare" />
           </SelectTrigger>
           <SelectContent className="rounded-none border-border bg-popover">
@@ -129,7 +129,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
                 </PopoverTrigger>
                 <PopoverContent className="w-64 rounded-none border-border bg-popover shadow-none">
                   <div className="flex flex-col gap-2">
-                    <span className="font-mono text-[9px] font-semibold uppercase tracking-wider text-muted-foreground">
+                    <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
                       Custom Range (local time)
                     </span>
                     <label className="flex items-center justify-between gap-2 font-mono text-[10px] text-muted-foreground">
@@ -174,24 +174,26 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
-        <Badge variant="outline" className={`h-6 rounded-none font-mono text-[9px] uppercase tracking-wider ${badge.className}`}>
+        <Badge variant="outline" className={`h-6 rounded-none font-mono text-[9px] uppercase tracking-[0.08em] ${badge.className}`}>
           <Database className="mr-1 h-3 w-3" />
           {badge.label}
         </Badge>
 
         <Badge
           variant="outline"
-          className={`h-6 rounded-none font-mono text-[9px] uppercase tracking-wider ${
+          className={`h-6 rounded-none font-mono text-[9px] uppercase tracking-[0.08em] ${
             status === 'connected' && !isPaused
-              ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-500'
-              : 'border-amber-500/50 bg-amber-500/10 text-amber-500'
+              ? 'border-live/50 bg-live/10 text-live'
+              : 'border-warn/50 bg-warn/10 text-warn'
           }`}
         >
           {status === 'connected' && !isPaused ? (
             <span className="relative mr-1.5 flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping bg-emerald-400 opacity-75 motion-reduce:animate-none"></span>
-              <span className="relative inline-flex h-2 w-2 bg-emerald-500"></span>
+              <span className="absolute inline-flex h-full w-full animate-ping bg-live opacity-75 motion-reduce:animate-none"></span>
+              <span className="relative inline-flex h-2 w-2 bg-live"></span>
             </span>
+          ) : status === 'disconnected' ? (
+            <WifiOff className="mr-1 h-3 w-3" />
           ) : (
             <Activity className="mr-1 h-3 w-3" />
           )}
