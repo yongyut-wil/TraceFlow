@@ -1,4 +1,5 @@
 import type { HistoricalResponse, StreamSubscriptionOptions, TimeSeriesDataSource, TimeSeriesPoint, TimeSeriesQueryParams } from './contracts';
+import { getMetricDef } from './metrics';
 
 // Deterministic pseudo-random in [0, 1) seeded by timestamp + site hash.
 function seededNoise(t: number, seed: number): number {
@@ -11,6 +12,7 @@ export class MockDataSource implements TimeSeriesDataSource {
 
   async fetchHistorical(params: TimeSeriesQueryParams, signal?: AbortSignal): Promise<HistoricalResponse> {
     const { siteId, metric, fromMs, toMs, limit = 10_000 } = params;
+    const def = getMetricDef(metric);
 
     return new Promise((resolve, reject) => {
       if (signal?.aborted) {
@@ -48,9 +50,9 @@ export class MockDataSource implements TimeSeriesDataSource {
         resolve({
           siteId,
           metric,
-          unit: isLatency ? 'ms' : 'req/s',
-          thresholdWarning: isLatency ? 85 : undefined,
-          thresholdCritical: isLatency ? 120 : undefined,
+          unit: def.unit,
+          thresholdWarning: def.warn,
+          thresholdCritical: def.crit,
           lastTimestampMs: toMs,
           points,
         });
@@ -68,11 +70,14 @@ export class MockDataSource implements TimeSeriesDataSource {
     let lastTs = afterTimestampMs;
 
     const interval = setInterval(() => {
+      const now = Date.now();
       const batchSize = Math.floor(Math.random() * 4) + 1;
       const points: TimeSeriesPoint[] = [];
 
       for (let i = 0; i < batchSize; i++) {
-        lastTs += 50 + Math.floor(Math.random() * 100);
+        // Anchor to wall-clock so "live" timestamps track real time while
+        // remaining strictly monotonic (dedup requires > afterTimestampMs).
+        lastTs = Math.max(now + i * 5, lastTs + 1);
 
         const timeRatio = lastTs / 10000;
         const cycle = Math.sin(timeRatio);
