@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(**)",
+      "Exec(pnpm test*)",
+      "Exec(pnpm run lint*)",
+      "Exec(pnpm run typecheck*)",
+      "Exec(npx supabase gen types*)",
+      "mcp__stitch__*"
+    ],
+    "deny": [
+      "Exec(npm *)",
+      "Exec(yarn *)"
+    ],
+    "ask": [
+      "Write(**/.env*)",
+      "mcp__*"
+    ]
+  },
+  "read_config_from": {
+    "agents_standard": true,
+    "cursor": true,
+    "windsurf": true,
+    "claude": false
+  }
+}

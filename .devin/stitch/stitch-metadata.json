@@ -1,0 +1,24 @@
+{
+  "project": {
+    "id": "1727067450271412067",
+    "name": "projects/1727067450271412067",
+    "title": "TraceFlow Real-Time Telemetry Dashboard"
+  },
+  "designSystem": {
+    "name": "assets/0ac2172ff6ca4bfe9e08612df09824c2",
+    "displayName": "TraceFlow",
+    "localSpecPath": ".devin/stitch/DESIGN.md"
+  },
+  "screens": [
+    {
+      "id": "32383d1077d64fa89a20e377f7505cf7",
+      "name": "projects/1727067450271412067/screens/32383d1077d64fa89a20e377f7505cf7",
+      "title": "TraceFlow — Mission Control Telemetry Dashboard",
+      "deviceType": "DESKTOP",
+      "resolution": "2560x2048",
+      "screenshotFile": "projects/1727067450271412067/files/1bf5d05ce8d440c6ba24c5040687405d",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/AEtjO1UFodSA2S-2ARasUlQyJ5vuIloMd6iwz-bU64PGlPlgr56eUDeF8LU-Sr8ZXZPZMxuyjzpbAVIsiZk3c4KpOgk5Fy-yGBHFv6TrhLSrDVfLWYovOn9Gz4TX6n8S2ULD5fwsxvIGM7MV1sVk9v4vdbP_rd3amgCpVSCgvlgMQEd4bSBCXfIEUkEDSLmd9jZHC2vQkbHq4UG3OKSBBDRNAqsaOHZw62PHa4YvzyRGd12wGXyyRpe1RC1xIt0",
+      "htmlCodeFile": "projects/1727067450271412067/files/39bfb221de054aa688e2c4e2d6649298"
+    }
+  ]
+}

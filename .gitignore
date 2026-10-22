@@ -32,6 +32,18 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# local agent overrides & secrets (never commit)
+AGENTS.local.md
+.devin/config.local.json
+.devin/mcp_config.local.json
+
+# testing artifacts
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
 
 # vercel
 .vercel

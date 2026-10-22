@@ -1,0 +1,211 @@
+'use client';
+
+import { useQueryStates } from 'nuqs';
+import { dashboardSearchParams, TIME_RANGES, DATA_MODES, METRICS } from '@/lib/search-params';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Activity, Pause, Play, Database } from 'lucide-react';
+import type { ConnectionStatus, ResolvedSourceMode } from '@/lib/data/contracts';
+
+interface HeaderFilterBarProps {
+  status: ConnectionStatus;
+  sourceMode: ResolvedSourceMode;
+  isPaused: boolean;
+  onTogglePause: () => void;
+  bufferInfo: string;
+}
+
+const SOURCE_BADGE: Record<ResolvedSourceMode, { label: string; className: string }> = {
+  supabase: {
+    label: 'SUPABASE LIVE',
+    className: 'border-emerald-500/50 bg-emerald-500/10 text-emerald-500',
+  },
+  mock: {
+    label: 'MOCK STREAM',
+    className: 'border-amber-500/50 bg-amber-500/10 text-amber-500',
+  },
+  error: {
+    label: 'SOURCE ERROR',
+    className: 'border-rose-500/50 bg-rose-500/10 text-rose-500',
+  },
+};
+
+const CUSTOM_DEFAULT_MS = 3_600_000;
+
+function toLocalInput(d: Date | null): string {
+  if (!d) return '';
+  return new Date(d.getTime() - d.getTimezoneOffset() * 60_000).toISOString().slice(0, 16);
+}
+
+function fromLocalInput(v: string): Date | null {
+  if (!v) return null;
+  const d = new Date(v);
+  return Number.isNaN(d.getTime()) ? null : d;
+}
+
+export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, bufferInfo }: HeaderFilterBarProps) {
+  const [params, setParams] = useQueryStates(dashboardSearchParams);
+  const { siteId, metric, range, mode, from, to } = params;
+
+  const badge = SOURCE_BADGE[sourceMode];
+
+  const selectPresetRange = (r: Exclude<(typeof TIME_RANGES)[number], 'custom'>) =>
+    setParams({ range: r, from: null, to: null });
+
+  const selectCustomRange = () =>
+    setParams({
+      range: 'custom',
+      from: from ?? new Date(Date.now() - CUSTOM_DEFAULT_MS),
+      to: to ?? new Date(),
+    });
+
+  const setFrom = (v: string) => {
+    const d = fromLocalInput(v);
+    if (!d) return setParams({ from: null });
+    setParams({ from: d, to: to && to > d ? to : new Date(d.getTime() + CUSTOM_DEFAULT_MS) });
+  };
+
+  const setTo = (v: string) => {
+    const d = fromLocalInput(v);
+    if (!d) return setParams({ to: null });
+    setParams({ to: d, from: from && from < d ? from : new Date(d.getTime() - CUSTOM_DEFAULT_MS) });
+  };
+
+  const rangeBtnClass = (active: boolean) =>
+    `px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider transition-colors ${
+      active ? 'bg-accent text-primary' : 'text-muted-foreground hover:text-foreground'
+    }`;
+
+  const dateInputClass =
+    'h-7 rounded-none border border-border bg-background px-2 font-mono text-[10px] text-foreground';
+
+  return (
+    <header className="flex h-14 items-center justify-between border-b border-border bg-card px-4 shrink-0">
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
+          <div className="h-4 w-4 bg-primary" />
+          <span className="font-mono text-sm font-bold uppercase tracking-widest text-primary">
+            TraceFlow
+          </span>
+        </div>
+
+        <div className="h-4 w-px bg-border" />
+
+        <Select value={siteId} onValueChange={(v) => v && setParams({ siteId: v })}>
+          <SelectTrigger className="h-7 w-40 rounded-none border-border bg-muted/50 font-mono text-xs">
+            <SelectValue placeholder="Node" />
+          </SelectTrigger>
+          <SelectContent className="rounded-none border-border bg-popover">
+            <SelectItem value="node-us-east-01" className="font-mono text-xs">NODE_US_EAST_01</SelectItem>
+            <SelectItem value="node-eu-west-02" className="font-mono text-xs">NODE_EU_WEST_02</SelectItem>
+          </SelectContent>
+        </Select>
+
+        <Select value={metric} onValueChange={(v) => v && setParams({ metric: v })}>
+          <SelectTrigger className="h-7 w-48 rounded-none border-border bg-muted/50 font-mono text-xs">
+            <SelectValue placeholder="Metric" />
+          </SelectTrigger>
+          <SelectContent className="rounded-none border-border bg-popover">
+            {METRICS.map(m => (
+              <SelectItem key={m.id} value={m.id} className="font-mono text-xs">{m.label}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <div className="flex h-7 items-center rounded-none border border-border bg-muted/50 p-0.5">
+          {TIME_RANGES.map(r =>
+            r === 'custom' ? (
+              <Popover key={r}>
+                <PopoverTrigger onClick={selectCustomRange} className={rangeBtnClass(range === 'custom')}>
+                  {r}
+                </PopoverTrigger>
+                <PopoverContent className="w-64 rounded-none border-border bg-popover shadow-none">
+                  <div className="flex flex-col gap-2">
+                    <span className="font-mono text-[9px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      Custom Range (local time)
+                    </span>
+                    <label className="flex items-center justify-between gap-2 font-mono text-[10px] text-muted-foreground">
+                      FROM
+                      <input
+                        type="datetime-local"
+                        value={toLocalInput(from)}
+                        onChange={(e) => setFrom(e.target.value)}
+                        className={dateInputClass}
+                      />
+                    </label>
+                    <label className="flex items-center justify-between gap-2 font-mono text-[10px] text-muted-foreground">
+                      TO
+                      <input
+                        type="datetime-local"
+                        value={toLocalInput(to)}
+                        onChange={(e) => setTo(e.target.value)}
+                        className={dateInputClass}
+                      />
+                    </label>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            ) : (
+              <button key={r} onClick={() => selectPresetRange(r)} className={rangeBtnClass(range === r)}>
+                {r}
+              </button>
+            )
+          )}
+        </div>
+
+        <Select value={mode} onValueChange={(v) => v && setParams({ mode: v as typeof mode })}>
+          <SelectTrigger className="h-7 w-32 rounded-none border-border bg-muted/50 font-mono text-xs">
+            <SelectValue placeholder="Mode" />
+          </SelectTrigger>
+          <SelectContent className="rounded-none border-border bg-popover">
+            {DATA_MODES.map(m => (
+              <SelectItem key={m} value={m} className="font-mono text-xs uppercase">{m}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="flex items-center gap-3">
+        <Badge variant="outline" className={`h-6 rounded-none font-mono text-[9px] uppercase tracking-wider ${badge.className}`}>
+          <Database className="mr-1 h-3 w-3" />
+          {badge.label}
+        </Badge>
+
+        <Badge
+          variant="outline"
+          className={`h-6 rounded-none font-mono text-[9px] uppercase tracking-wider ${
+            status === 'connected' && !isPaused
+              ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-500'
+              : 'border-amber-500/50 bg-amber-500/10 text-amber-500'
+          }`}
+        >
+          {status === 'connected' && !isPaused ? (
+            <span className="relative mr-1.5 flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 bg-emerald-500"></span>
+            </span>
+          ) : (
+            <Activity className="mr-1 h-3 w-3" />
+          )}
+          {isPaused ? 'PAUSED' : status}
+        </Badge>
+
+        <div className="font-mono text-[10px] text-muted-foreground">
+          {bufferInfo}
+        </div>
+
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={onTogglePause}
+          className="h-7 rounded-none border-border font-mono text-xs uppercase"
+        >
+          {isPaused ? <Play className="mr-1 h-3 w-3" /> : <Pause className="mr-1 h-3 w-3" />}
+          {isPaused ? 'Resume' : 'Pause'}
+        </Button>
+      </div>
+    </header>
+  );
+}

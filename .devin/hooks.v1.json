@@ -1,0 +1,36 @@
+{
+  "PreToolUse": [
+    {
+      "matcher": "^(write|edit|apply_patch)$",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "node .devin/scripts/pre-edit-guard.mjs",
+          "timeout": 5
+        }
+      ]
+    },
+    {
+      "matcher": "^exec$",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "node .devin/scripts/pre-exec-guard.mjs",
+          "timeout": 5
+        }
+      ]
+    }
+  ],
+  "PostCompaction": [
+    {
+      "matcher": "",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "node .devin/scripts/post-compaction.mjs",
+          "timeout": 5
+        }
+      ]
+    }
+  ]
+}
