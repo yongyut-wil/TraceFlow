@@ -3,10 +3,10 @@
 All notable changes to TraceFlow. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 versioning follows SemVer.
 
-## [Unreleased]
+## [0.3.0] - 2025-10-22
 
-Post-release polish from the 13-viewport responsive audit + design-system
-token audit — closes ISSUE-008 and ISSUE-009.
+Polish release — 13-viewport responsive audit, design-token hygiene, and a
+visual refinement pass. Closes ISSUE-008, ISSUE-009, ISSUE-010.
 
 ### Added
 - `--live`/`--warn`/`--crit` signal-color tokens (`#10B981`/`#F59E0B`/`#F43F5E`)
@@ -22,6 +22,10 @@ token audit — closes ISSUE-008 and ISSUE-009.
 - `--` KPI placeholders and the anomaly empty state use the `text-dim`
   (`#475569`) tier so the third text token is no longer dead (ISSUE-008)
 - Disconnected status badge shows `WifiOff` instead of `Activity` (ISSUE-008)
+- KPI icons match metric semantics — `Zap` (live), `Sigma` (mean),
+  `TrendingUp` (peak) (ISSUE-010)
+- KPI value 24→26px; grid splitLines softened to `rgba(30,41,59,.55)`
+  (ISSUE-009)
 
 ### Fixed
 - Compare select `throughput_rps` truncated at ≤1440px — trigger widened
