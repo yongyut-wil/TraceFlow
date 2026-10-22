@@ -14,6 +14,8 @@ token audit — closes ISSUE-008 and ISSUE-009.
 - `--raised` surface tier (`#101B2C`) for KPI cards (ISSUE-009)
 - Signal-linked visual devices: KPI left borders per metric, accent ticks on
   panel headers, gradient area fills under both chart traces (ISSUE-009)
+- `--edge` border tier (`#334155`) marking interactive controls vs structural
+  hairlines (ISSUE-010)
 
 ### Changed
 - label-caps elements use `tracking-[0.08em]` per spec (was `tracking-wider`)

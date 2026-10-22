@@ -32,6 +32,7 @@
   --color-warn: var(--warn);
   --color-crit: var(--crit);
   --color-raised: var(--raised);
+  --color-edge: var(--edge);
 
   --radius-sm: 0;
   --radius-md: 0;
@@ -63,6 +64,7 @@
   --warn: #F59E0B;
   --crit: #F43F5E;
   --raised: #101B2C;
+  --edge: #334155;
 }
 
 @layer base {
