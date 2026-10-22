@@ -60,31 +60,21 @@ solving all three:
 ## Architecture
 
 ```mermaid
-flowchart LR
-    subgraph URL["URL state (nuqs)"]
-        P[siteId · metric · compare<br/>range · mode · from/to]
-    end
+flowchart TD
+    U["🔗 nuqs URL state<br/>siteId · metric · compare · range · mode"]
 
-    subgraph DATA["Data layer — TimeSeriesDataSource"]
-        D[getDataSource]
-        M[MockDataSource<br/>deterministic 10k pts + wall-clock stream]
-        S[SupabaseDataSource<br/>PostgREST + Realtime broadcast]
-    end
+    U --> D{"getDataSource<br/><i>env mode</i>"}
 
-    subgraph STREAM["useRealtimeChartBuffer"]
-        R[useRef ring buffer<br/>10k cap · ts dedup]
-        F[250ms timer + rAF flush]
-    end
+    D -->|"mock / no creds"| M["MockDataSource<br/>10k deterministic + wall-clock stream"]
+    D -->|"supabase"| S["SupabaseDataSource<br/>PostgREST + Realtime broadcast"]
 
-    subgraph CANVAS["ECharts (echarts/core)"]
-        E1[Primary signal]
-        E2[Correlation<br/>traceflow-group]
-    end
+    M -->|"zod-validated tuples"| B["useRef ring buffer<br/>10k cap · timestamp dedup"]
+    S -->|"zod-validated tuples"| B
 
-    P --> D
-    D -->|mode=mock / no creds| M
-    D -->|mode=supabase| S
-    M & S -->|zod-validated tuples| R --> F --> E1 & E2
+    B --> F["⏱ rAF flush · 250ms"]
+
+    F --> E1["Primary signal<br/>LTTB · markLines · dataZoom"]
+    F --> E2["Correlation chart<br/><i>echarts.connect — synced crosshair</i>"]
 ```
 
 **Data contract** — zero-transformation tuples, validated at the boundary:
