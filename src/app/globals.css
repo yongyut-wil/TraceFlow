@@ -20,6 +20,7 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-dim: var(--text-dim);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
@@ -46,6 +47,7 @@
   --secondary-foreground: #F8FAFC;
   --muted: #121A2A;
   --muted-foreground: #94A3B8;
+  --text-dim: #475569;
   --accent: #121A2A;
   --accent-foreground: #F8FAFC;
   --destructive: #F43F5E;

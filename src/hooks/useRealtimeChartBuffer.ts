@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState, type MutableRefObject } from 'react';
+import { useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react';
 import type { EChartsCoreInstance } from '@/lib/echarts-setup';
-import type { AnomalyEvent, BufferStats, ConnectionStatus, DataMode, TimeSeriesPoint } from '@/lib/data/contracts';
+import type { AnomalyEvent, BufferStats, ConnectionStatus, DataMode, ResolvedSourceMode, TimeSeriesPoint } from '@/lib/data/contracts';
 import { getDataSource } from '@/lib/data';
 import { useQuery } from '@tanstack/react-query';
 
@@ -63,6 +63,7 @@ interface UseRealtimeChartBufferOptions {
   seriesId: string;
   mode?: DataMode;
   paused?: boolean;
+  enabled?: boolean;
   maxPoints?: number;
   flushIntervalMs?: number;
 }
@@ -77,6 +78,7 @@ export function useRealtimeChartBuffer({
   seriesId,
   mode,
   paused = false,
+  enabled = true,
   maxPoints = 10_000,
   flushIntervalMs = 250,
 }: UseRealtimeChartBufferOptions) {
@@ -90,8 +92,18 @@ export function useRealtimeChartBuffer({
   const [status, setStatus] = useState<ConnectionStatus>('connecting');
   const [stats, setStats] = useState<BufferStats>(EMPTY_STATS);
 
+  // Resolved via the cached factory singleton — idempotent, safe in useMemo.
+  const sourceMode: ResolvedSourceMode = useMemo(() => {
+    try {
+      return getDataSource(mode).mode;
+    } catch {
+      return 'error';
+    }
+  }, [mode]);
+
   // The window is resolved inside queryFn (impure calls are legal in callbacks)
-  // so each queryKey change fetches a fresh window anchored at "now".
+  // so each queryKey change fetches a fresh window anchored at "now". The live
+  // stream is the freshness mechanism, so no refetch-on-focus churn.
   const { data: historicalData, isLoading, isError } = useQuery({
     queryKey: ['historical', mode, siteId, metric, range, from?.getTime(), to?.getTime()],
     queryFn: ({ signal }) => {
@@ -100,6 +112,9 @@ export function useRealtimeChartBuffer({
       const ds = getDataSource(mode);
       return ds.fetchHistorical({ siteId, metric, fromMs, toMs, limit: maxPoints }, signal);
     },
+    enabled,
+    staleTime: 30_000,
+    refetchOnWindowFocus: false,
     retry: 1,
   });
 
@@ -121,7 +136,7 @@ export function useRealtimeChartBuffer({
 
   // Live stream subscription — batches only mutate refs, never React state.
   useEffect(() => {
-    if (!historicalData || paused) return;
+    if (!historicalData || paused || !enabled) return;
 
     const ds = getDataSource(mode);
     const unsubscribe = ds.subscribeStream({
@@ -149,7 +164,7 @@ export function useRealtimeChartBuffer({
     });
 
     return () => unsubscribe();
-  }, [historicalData, siteId, metric, mode, paused, maxPoints]);
+  }, [historicalData, siteId, metric, mode, paused, enabled, maxPoints]);
 
   // Single throttled rAF flush: chart setOption + one batched stats snapshot.
   useEffect(() => {
@@ -178,6 +193,7 @@ export function useRealtimeChartBuffer({
     status: isError ? 'disconnected' : status,
     stats,
     historical: historicalData,
+    sourceMode,
     bufferRef,
   };
 }

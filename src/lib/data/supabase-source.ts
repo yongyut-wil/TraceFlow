@@ -1,6 +1,11 @@
-import { createClient } from '@supabase/supabase-js';
+import { createBrowserClient } from '@supabase/ssr';
 import { z } from 'zod';
 import { StreamBatchPayloadSchema, TimeSeriesPointSchema, type ConnectionStatus, type HistoricalResponse, type StreamSubscriptionOptions, type TimeSeriesDataSource, type TimeSeriesPoint, type TimeSeriesQueryParams } from './contracts';
+import { getMetricDef } from './metrics';
+
+// Channel-name segments come from URL params — strip anything that is not
+// a plain identifier character so topic names stay well-formed.
+const seg = (s: string) => s.replace(/[^a-zA-Z0-9_-]/g, '_');
 
 const TelemetryRowSchema = z.object({
   timestamp_ms: z.number(),
@@ -19,11 +24,12 @@ export class SupabaseDataSource implements TimeSeriesDataSource {
         'SupabaseDataSource requires NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY'
       );
     }
-    this.client = createClient(url, key);
+    this.client = createBrowserClient(url, key);
   }
 
   async fetchHistorical(params: TimeSeriesQueryParams, signal?: AbortSignal): Promise<HistoricalResponse> {
     const { siteId, metric, fromMs, toMs, limit = 10_000 } = params;
+    const def = getMetricDef(metric);
 
     let query = this.client
       .from('telemetry_points')
@@ -48,9 +54,9 @@ export class SupabaseDataSource implements TimeSeriesDataSource {
     return {
       siteId,
       metric,
-      unit: metric.includes('latency') ? 'ms' : 'req/s',
-      thresholdWarning: metric.includes('latency') ? 85 : undefined,
-      thresholdCritical: metric.includes('latency') ? 120 : undefined,
+      unit: def.unit,
+      thresholdWarning: def.warn,
+      thresholdCritical: def.crit,
       lastTimestampMs: points.length > 0 ? points[points.length - 1][0] : toMs,
       points,
     };
@@ -77,7 +83,7 @@ export class SupabaseDataSource implements TimeSeriesDataSource {
     }, 5_000);
 
     const channel = this.client
-      .channel(`telemetry:${siteId}:${metric}`)
+      .channel(`telemetry:${seg(siteId)}:${seg(metric)}`)
       .on('broadcast', { event: 'batch' }, (payload) => {
         lastMsgAt = Date.now();
         if (currentStatus === 'stale') setStatus('connected');

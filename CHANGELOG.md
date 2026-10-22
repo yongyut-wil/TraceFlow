@@ -3,12 +3,44 @@
 All notable changes to TraceFlow. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 versioning follows SemVer.
 
-## [Unreleased] — 0.2.0 (post-review fix train)
+## [0.2.0] - 2025-10-22
 
-Tracked in `docs/issues/`. Closes ISSUE-001 through ISSUE-007.
+Post-review fix train — closes ISSUE-001 through ISSUE-007 (see `docs/issues/`).
+
+### Added
+- COMPARE metric selector in the header with a `none` option; the correlation
+  chart hides instead of duplicating the primary metric (ISSUE-003)
+- Anomaly table rows zoom the primary chart to ±2 min around the event via
+  `dataZoom` dispatch (ISSUE-002)
+- Security headers on all routes (nosniff, DENY framing, Referrer-Policy) and
+  a production CSP limiting `connect-src` to self + `*.supabase.co` (ISSUE-006)
+- Third text tier token `#475569` (`text-dim`) per design spec (ISSUE-005)
+- Centralized `src/lib/chart-theme.ts` for canvas-facing color constants
+  (ISSUE-005)
+- 24 new tests: zod contract schemas, `getDataSource` factory matrix, mock
+  determinism + wall-clock anchoring, `EChartCanvas` dispose/ResizeObserver
+  lifecycle, literal 12k→10k ring-buffer cap, flush→`setOption` assertion,
+  nuqs reload-persistence E2E — 29 unit + 3 E2E total (ISSUE-001)
+
+### Changed
+- Mock live stream anchors timestamps to wall-clock (`Date.now()`) instead of
+  an accelerating counter (ISSUE-004)
+- Historical query sets `staleTime: 30s` + `refetchOnWindowFocus: false`;
+  the live stream is the freshness mechanism (ISSUE-007)
+- Metric units/thresholds resolve via `METRIC_DEFS` registry instead of
+  `metric.includes('latency')` (ISSUE-007)
+- `SupabaseDataSource` uses `@supabase/ssr` `createBrowserClient`; channel
+  name segments sanitized (ISSUE-006)
+- `shadcn` moved to `devDependencies` (ISSUE-006)
+- Custom range commits `range=custom` only when a date is picked (ISSUE-005)
+- KPI skeleton loading, reduced-motion live dot, focus rings on range
+  buttons, responsive grid breakpoints (ISSUE-005)
 
 ### Fixed
-- (pending)
+- Anomaly table distinguishes "source unavailable" from "no breaches";
+  `deltaPct` sign renders correctly (ISSUE-002)
+- Dead `ZoomIn` control wired to a real action (ISSUE-002)
+- Horizontal overflow on ~390px viewports (ISSUE-005)
 
 ## [0.1.0] - 2025-10-22
 
