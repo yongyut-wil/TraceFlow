@@ -59,29 +59,11 @@ solving all three:
 
 ## Architecture
 
-```
- nuqs URL state                getDataSource()
- siteId · metric · compare ──► (env mode) ──┬─ mock/no creds ─► MockDataSource
- range · mode · from · to                   │                 10k deterministic
-                                           │                 + wall-clock stream
-                                           │
-                                           └─ supabase ──────► SupabaseDataSource
-                                                              PostgREST + Realtime
+<img src="docs/assets/architecture.svg" alt="TraceFlow pipeline: nuqs URL state → getDataSource (env mode) → Mock or Supabase source → zod-validated tuples → useRef ring buffer → rAF flush → primary + correlation ECharts" width="100%">
 
-                                          zod-validated tuples
-                                                     │
-                                                     ▼
-                                    useRef ring buffer (10k cap · ts dedup)
-                                                     │
-                                              rAF flush · 250ms
-                                                     │
-                              ┌──────────────────────┴──────────────────────┐
-                              ▼                                             ▼
-                    Primary signal                            Correlation chart
-                    LTTB · markLines · dataZoom               echarts.connect — synced
-```
-
-**Data contract** — zero-transformation tuples, validated at the boundary:
+Points flow through a ref-held ring buffer — **no per-point React state** —
+and hit the charts on a 250ms `requestAnimationFrame` tick. Data contract —
+zero-transformation tuples, validated once at the source boundary:
 
 ```ts
 type TimeSeriesPoint = readonly [timestampMs: number, value: number]
