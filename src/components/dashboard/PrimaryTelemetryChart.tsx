@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react';
 import { EChartCanvas } from '@/components/charts/EChartCanvas';
+import { CHART_COLORS, CHART_FONT } from '@/lib/chart-theme';
 import type { EChartsCoreInstance } from '@/lib/echarts-setup';
 import type { EChartsCoreOption } from 'echarts/core';
 
@@ -17,13 +18,13 @@ export function PrimaryTelemetryChart({ chartRef, metric, thresholdWarning, thre
     const markLineData = [
       thresholdWarning !== undefined && {
         yAxis: thresholdWarning,
-        lineStyle: { color: '#F59E0B' },
-        label: { show: true, position: 'insideEndTop' as const, formatter: `WARN ${thresholdWarning}ms`, color: '#F59E0B', fontFamily: 'JetBrains Mono', fontSize: 9 },
+        lineStyle: { color: CHART_COLORS.warn },
+        label: { show: true, position: 'insideEndTop' as const, formatter: `WARN ${thresholdWarning}ms`, color: CHART_COLORS.warn, fontFamily: CHART_FONT, fontSize: 9 },
       },
       thresholdCritical !== undefined && {
         yAxis: thresholdCritical,
-        lineStyle: { color: '#F43F5E' },
-        label: { show: true, position: 'insideEndTop' as const, formatter: `CRIT ${thresholdCritical}ms`, color: '#F43F5E', fontFamily: 'JetBrains Mono', fontSize: 9 },
+        lineStyle: { color: CHART_COLORS.crit },
+        label: { show: true, position: 'insideEndTop' as const, formatter: `CRIT ${thresholdCritical}ms`, color: CHART_COLORS.crit, fontFamily: CHART_FONT, fontSize: 9 },
       },
     ].filter((d): d is NonNullable<typeof d> => Boolean(d));
 
@@ -33,27 +34,27 @@ export function PrimaryTelemetryChart({ chartRef, metric, thresholdWarning, thre
       grid: { top: 40, right: 40, bottom: 60, left: 60, containLabel: false },
       tooltip: {
         trigger: 'axis',
-        axisPointer: { type: 'cross', label: { backgroundColor: '#1A2438', color: '#F8FAFC', fontFamily: 'JetBrains Mono', fontSize: 10 } },
-        backgroundColor: '#121A2A',
-        borderColor: '#334155',
-        textStyle: { color: '#F8FAFC', fontFamily: 'JetBrains Mono', fontSize: 10 },
+        axisPointer: { type: 'cross', label: { backgroundColor: CHART_COLORS.panel3, color: CHART_COLORS.textPrimary, fontFamily: CHART_FONT, fontSize: 10 } },
+        backgroundColor: CHART_COLORS.panel2,
+        borderColor: CHART_COLORS.borderAccent,
+        textStyle: { color: CHART_COLORS.textPrimary, fontFamily: CHART_FONT, fontSize: 10 },
       },
       xAxis: {
         type: 'time',
-        axisLine: { lineStyle: { color: '#1E293B' } },
-        splitLine: { show: true, lineStyle: { color: '#1E293B', type: 'dotted' } },
-        axisLabel: { color: '#94A3B8', fontFamily: 'JetBrains Mono', fontSize: 10, formatter: '{HH}:{mm}:{ss}' },
+        axisLine: { lineStyle: { color: CHART_COLORS.border } },
+        splitLine: { show: true, lineStyle: { color: CHART_COLORS.border, type: 'dotted' } },
+        axisLabel: { color: CHART_COLORS.textSecondary, fontFamily: CHART_FONT, fontSize: 10, formatter: '{HH}:{mm}:{ss}' },
       },
       yAxis: {
         type: 'value',
         scale: true,
         axisLine: { show: false },
-        splitLine: { show: true, lineStyle: { color: '#1E293B', type: 'dotted' } },
-        axisLabel: { color: '#94A3B8', fontFamily: 'JetBrains Mono', fontSize: 10 },
+        splitLine: { show: true, lineStyle: { color: CHART_COLORS.border, type: 'dotted' } },
+        axisLabel: { color: CHART_COLORS.textSecondary, fontFamily: CHART_FONT, fontSize: 10 },
       },
       dataZoom: [
         { type: 'inside', throttle: 50 },
-        { type: 'slider', height: 20, bottom: 10, borderColor: '#334155', backgroundColor: '#0D131F', fillerColor: 'rgba(0, 229, 255, 0.1)', handleStyle: { color: '#00E5FF' }, textStyle: { color: '#94A3B8', fontFamily: 'JetBrains Mono', fontSize: 9 } }
+        { type: 'slider', height: 20, bottom: 10, borderColor: CHART_COLORS.borderAccent, backgroundColor: CHART_COLORS.panel, fillerColor: 'rgba(0, 229, 255, 0.1)', handleStyle: { color: CHART_COLORS.accent }, textStyle: { color: CHART_COLORS.textSecondary, fontFamily: CHART_FONT, fontSize: 9 } }
       ],
       series: [
         {
@@ -66,8 +67,8 @@ export function PrimaryTelemetryChart({ chartRef, metric, thresholdWarning, thre
           progressive: 4000,
           progressiveThreshold: 10000,
           animation: false,
-          lineStyle: { color: '#00E5FF', width: 1.5 },
-          itemStyle: { color: '#00E5FF' },
+          lineStyle: { color: CHART_COLORS.accent, width: 1.5 },
+          itemStyle: { color: CHART_COLORS.accent },
           ...(markLineData.length > 0 && {
             markLine: {
               silent: true,

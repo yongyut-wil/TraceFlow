@@ -4,19 +4,29 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ZoomIn } from 'lucide-react';
-import type { AnomalyEvent } from '@/lib/data/contracts';
+import type { AnomalyEvent, ConnectionStatus } from '@/lib/data/contracts';
 
 interface AnomalyStreamTableProps {
   anomalies: AnomalyEvent[];
   siteId: string;
   unit: string;
+  status: ConnectionStatus;
+  onInspect?: (timestampMs: number) => void;
 }
 
 function fmtTs(ts: number): string {
   return new Date(ts).toISOString().slice(11, 23);
 }
 
-export function AnomalyStreamTable({ anomalies, siteId, unit }: AnomalyStreamTableProps) {
+function fmtDelta(deltaPct: number): string {
+  return `${deltaPct >= 0 ? '+' : '−'}${Math.abs(deltaPct).toFixed(0)}%`;
+}
+
+export function AnomalyStreamTable({ anomalies, siteId, unit, status, onInspect }: AnomalyStreamTableProps) {
+  const emptyMessage =
+    status === 'disconnected'
+      ? 'Source unavailable — check data mode'
+      : 'No threshold breaches in buffer window';
   return (
     <div className="flex h-[250px] flex-col bg-card shrink-0">
       <div className="flex h-8 items-center justify-between border-b border-border bg-muted/30 px-3">
@@ -41,7 +51,7 @@ export function AnomalyStreamTable({ anomalies, siteId, unit }: AnomalyStreamTab
             {anomalies.length === 0 ? (
               <tr className="border-b border-border/50">
                 <td colSpan={6} className="px-3 py-6 text-center font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                  No threshold breaches in buffer window
+                  {emptyMessage}
                 </td>
               </tr>
             ) : (
@@ -60,9 +70,15 @@ export function AnomalyStreamTable({ anomalies, siteId, unit }: AnomalyStreamTab
                   </td>
                   <td className="px-3 py-2 text-muted-foreground">{siteId.toUpperCase().replaceAll('-', '_')}</td>
                   <td className="px-3 py-2 text-foreground">{row.value.toFixed(1)} {unit}</td>
-                  <td className="px-3 py-2 text-rose-400">+{row.deltaPct.toFixed(0)}%</td>
+                  <td className="px-3 py-2 text-rose-400">{fmtDelta(row.deltaPct)}</td>
                   <td className="px-3 py-2 text-right">
-                    <Button variant="ghost" size="icon" className="h-5 w-5 rounded-none text-muted-foreground hover:text-primary">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => onInspect?.(row.timestampMs)}
+                      title="Zoom primary chart to this event"
+                      className="h-5 w-5 rounded-none text-muted-foreground hover:text-primary"
+                    >
                       <ZoomIn className="h-3 w-3" />
                     </Button>
                   </td>

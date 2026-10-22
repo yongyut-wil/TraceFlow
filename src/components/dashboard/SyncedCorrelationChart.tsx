@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react';
 import { EChartCanvas } from '@/components/charts/EChartCanvas';
+import { CHART_COLORS, CHART_FONT } from '@/lib/chart-theme';
 import type { EChartsCoreInstance } from '@/lib/echarts-setup';
 import type { EChartsCoreOption } from 'echarts/core';
 import type { ConnectionStatus } from '@/lib/data/contracts';
@@ -21,23 +22,23 @@ export function SyncedCorrelationChart({ chartRef, metric, status }: SyncedCorre
     grid: { top: 30, right: 20, bottom: 40, left: 60, containLabel: false },
     tooltip: {
       trigger: 'axis',
-      axisPointer: { type: 'cross', label: { backgroundColor: '#1A2438', color: '#F8FAFC', fontFamily: 'JetBrains Mono', fontSize: 10 } },
-      backgroundColor: '#121A2A',
-      borderColor: '#334155',
-      textStyle: { color: '#F8FAFC', fontFamily: 'JetBrains Mono', fontSize: 10 },
+      axisPointer: { type: 'cross', label: { backgroundColor: CHART_COLORS.panel3, color: CHART_COLORS.textPrimary, fontFamily: CHART_FONT, fontSize: 10 } },
+      backgroundColor: CHART_COLORS.panel2,
+      borderColor: CHART_COLORS.borderAccent,
+      textStyle: { color: CHART_COLORS.textPrimary, fontFamily: CHART_FONT, fontSize: 10 },
     },
     xAxis: {
       type: 'time',
-      axisLine: { lineStyle: { color: '#1E293B' } },
+      axisLine: { lineStyle: { color: CHART_COLORS.border } },
       splitLine: { show: false },
-      axisLabel: { color: '#94A3B8', fontFamily: 'JetBrains Mono', fontSize: 10, formatter: '{HH}:{mm}' },
+      axisLabel: { color: CHART_COLORS.textSecondary, fontFamily: CHART_FONT, fontSize: 10, formatter: '{HH}:{mm}' },
     },
     yAxis: {
       type: 'value',
       scale: true,
       axisLine: { show: false },
-      splitLine: { show: true, lineStyle: { color: '#1E293B', type: 'dotted' } },
-      axisLabel: { color: '#94A3B8', fontFamily: 'JetBrains Mono', fontSize: 10 },
+      splitLine: { show: true, lineStyle: { color: CHART_COLORS.border, type: 'dotted' } },
+      axisLabel: { color: CHART_COLORS.textSecondary, fontFamily: CHART_FONT, fontSize: 10 },
     },
     series: [
       {
@@ -50,8 +51,8 @@ export function SyncedCorrelationChart({ chartRef, metric, status }: SyncedCorre
         progressive: 4000,
         progressiveThreshold: 10000,
         animation: false,
-        lineStyle: { color: '#818CF8', width: 1.2 },
-        itemStyle: { color: '#818CF8' },
+        lineStyle: { color: CHART_COLORS.secondary, width: 1.2 },
+        itemStyle: { color: CHART_COLORS.secondary },
         areaStyle: { color: 'rgba(129, 140, 248, 0.08)' },
         data: [],
       },
