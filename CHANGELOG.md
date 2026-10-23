@@ -3,7 +3,10 @@
 All notable changes to TraceFlow. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 versioning follows SemVer.
 
-## [Unreleased]
+## [0.4.1] - 2026-10-23
+
+Docs/design-system consistency patch — spec files now match the shipped
+terminal product. Closes ISSUE-017.
 
 ### Changed
 - `DESIGN.md` rewritten as design-system v3 — frontmatter colors corrected to
