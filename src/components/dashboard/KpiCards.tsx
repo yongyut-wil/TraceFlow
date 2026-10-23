@@ -22,7 +22,7 @@ export function KpiCards({ stats, unit, isLoading }: KpiCardsProps) {
     {
       title: 'Current Value',
       accent: 'border-l-live',
-      icon: <Zap className="h-3 w-3 text-live" />,
+      icon: <Zap aria-hidden className="h-3 w-3 text-live" />,
       value: isLoading ? '--' : fmt(stats.last),
       unit,
       sub: `live · ${stats.count.toLocaleString()} pts buffered`,
@@ -31,7 +31,7 @@ export function KpiCards({ stats, unit, isLoading }: KpiCardsProps) {
     {
       title: 'Window Mean',
       accent: 'border-l-secondary',
-      icon: <Sigma className="h-3 w-3 text-secondary" />,
+      icon: <Sigma aria-hidden className="h-3 w-3 text-secondary" />,
       value: isLoading ? '--' : fmt(stats.count > 0 ? stats.avg : null),
       unit,
       sub: `mean over buffer window`,
@@ -40,7 +40,7 @@ export function KpiCards({ stats, unit, isLoading }: KpiCardsProps) {
     {
       title: 'Peak',
       accent: 'border-l-primary',
-      icon: <TrendingUp className="h-3 w-3 text-primary" />,
+      icon: <TrendingUp aria-hidden className="h-3 w-3 text-primary" />,
       value: isLoading ? '--' : fmt(stats.count > 0 ? stats.max : null),
       unit,
       sub: 'max in window',
@@ -49,7 +49,7 @@ export function KpiCards({ stats, unit, isLoading }: KpiCardsProps) {
     {
       title: 'Anomalies',
       accent: 'border-l-warn',
-      icon: <AlertTriangle className="h-3 w-3 text-warn" />,
+      icon: <AlertTriangle aria-hidden className="h-3 w-3 text-warn" />,
       value: isLoading ? '--' : stats.anomalies.length.toLocaleString(),
       unit: '',
       sub: `${critCount} CRIT · newest ≤50 retained`,
