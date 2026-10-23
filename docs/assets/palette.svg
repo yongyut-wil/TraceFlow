@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 396" font-family="ui-monospace, 'IBM Plex Mono', Menlo, Consolas, monospace">
+<rect width="1120" height="100%" fill="#000"/>
+<text x="20" y="26" font-size="11" fill="#9C9CA6" letter-spacing="2">TRACEFLOW · TERMINAL TOKENS</text>
+<text x="20" y="60" font-size="10" fill="#FFB000" letter-spacing="1.5">SURFACES</text>
+<rect x="20" y="72" width="160" height="52" fill="#000000" stroke="#33333B"/>
+<text x="28" y="92" font-size="11" fill="#55555E">canvas</text>
+<text x="28" y="112" font-size="11" fill="#55555E">#000000</text>
+<rect x="192" y="72" width="160" height="52" fill="#0B0B0E" stroke="#33333B"/>
+<text x="200" y="92" font-size="11" fill="#9C9CA6">card</text>
+<text x="200" y="112" font-size="11" fill="#F2EFE9">#0B0B0E</text>
+<rect x="364" y="72" width="160" height="52" fill="#111116" stroke="#33333B"/>
+<text x="372" y="92" font-size="11" fill="#9C9CA6">muted</text>
+<text x="372" y="112" font-size="11" fill="#F2EFE9">#111116</text>
+<rect x="536" y="72" width="160" height="52" fill="#121218" stroke="#33333B"/>
+<text x="544" y="92" font-size="11" fill="#9C9CA6">raised</text>
+<text x="544" y="112" font-size="11" fill="#F2EFE9">#121218</text>
+<rect x="708" y="72" width="160" height="52" fill="#16161C" stroke="#33333B"/>
+<text x="716" y="92" font-size="11" fill="#9C9CA6">popover</text>
+<text x="716" y="112" font-size="11" fill="#F2EFE9">#16161C</text>
+<rect x="880" y="72" width="160" height="52" fill="#1C1C22" stroke="#33333B"/>
+<text x="888" y="92" font-size="11" fill="#9C9CA6">accent</text>
+<text x="888" y="112" font-size="11" fill="#F2EFE9">#1C1C22</text>
+<text x="20" y="164" font-size="10" fill="#FFB000" letter-spacing="1.5">SIGNALS</text>
+<rect x="20" y="176" width="160" height="52" fill="#FFB000" stroke="#33333B"/>
+<text x="28" y="196" font-size="11" fill="#000">primary</text>
+<text x="28" y="216" font-size="11" fill="#000">#FFB000</text>
+<rect x="192" y="176" width="160" height="52" fill="#6FA8DC" stroke="#33333B"/>
+<text x="200" y="196" font-size="11" fill="#000">secondary</text>
+<text x="200" y="216" font-size="11" fill="#000">#6FA8DC</text>
+<rect x="364" y="176" width="160" height="52" fill="#2FBF71" stroke="#33333B"/>
+<text x="372" y="196" font-size="11" fill="#000">live</text>
+<text x="372" y="216" font-size="11" fill="#000">#2FBF71</text>
+<rect x="536" y="176" width="160" height="52" fill="#FB923C" stroke="#33333B"/>
+<text x="544" y="196" font-size="11" fill="#000">warn</text>
+<text x="544" y="216" font-size="11" fill="#000">#FB923C</text>
+<rect x="708" y="176" width="160" height="52" fill="#E5484D" stroke="#33333B"/>
+<text x="716" y="196" font-size="11" fill="#9C9CA6">crit</text>
+<text x="716" y="216" font-size="11" fill="#F2EFE9">#E5484D</text>
+<text x="20" y="268" font-size="10" fill="#FFB000" letter-spacing="1.5">CHROME</text>
+<rect x="20" y="280" width="160" height="52" fill="#1E1E24" stroke="#33333B"/>
+<text x="28" y="300" font-size="11" fill="#9C9CA6">border</text>
+<text x="28" y="320" font-size="11" fill="#F2EFE9">#1E1E24</text>
+<rect x="192" y="280" width="160" height="52" fill="#33333B" stroke="#33333B"/>
+<text x="200" y="300" font-size="11" fill="#9C9CA6">edge</text>
+<text x="200" y="320" font-size="11" fill="#F2EFE9">#33333B</text>
+<rect x="364" y="280" width="160" height="52" fill="#F2EFE9" stroke="#33333B"/>
+<text x="372" y="300" font-size="11" fill="#000">fg</text>
+<text x="372" y="320" font-size="11" fill="#000">#F2EFE9</text>
+<rect x="536" y="280" width="160" height="52" fill="#9C9CA6" stroke="#33333B"/>
+<text x="544" y="300" font-size="11" fill="#000">muted-fg</text>
+<text x="544" y="320" font-size="11" fill="#000">#9C9CA6</text>
+<rect x="708" y="280" width="160" height="52" fill="#55555E" stroke="#33333B"/>
+<text x="716" y="300" font-size="11" fill="#9C9CA6">dim</text>
+<text x="716" y="320" font-size="11" fill="#F2EFE9">#55555E</text>
+<text x="20" y="374" font-size="10" fill="#55555E">zero-radius · hairline borders · no shadows · IBM Plex Sans/Mono · reduced-motion honored</text>
+</svg>

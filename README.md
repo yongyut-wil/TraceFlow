@@ -122,6 +122,8 @@ pnpm run build && pnpm start
 
 Derived from `.devin/stitch/DESIGN.md` — ops-terminal (Bloomberg-style) conventions:
 
+<img src="docs/assets/palette.svg" alt="TraceFlow terminal token palette: zinc surfaces, amber/steel/green/orange/red signals, border and text tiers" width="100%">
+
 - **Surfaces** `#000` canvas → `#0B0B0E` panel → `#111116` focused → `#121218` raised → `#1C1C22` elevated
 - **Border tiers** `#1E1E24` structural · `#33333B` interactive controls · signal-color accents
 - **Signals** amber `#FFB000` primary · steel `#6FA8DC` secondary · green `#2FBF71` live · orange `#FB923C` warn · red `#E5484D` crit
