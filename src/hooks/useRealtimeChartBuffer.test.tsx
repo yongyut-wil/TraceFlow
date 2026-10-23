@@ -322,4 +322,76 @@ describe('useRealtimeChartBuffer', () => {
     expect(stats.anomalies[0].severity).toBe('CRIT');
     expect(stats.anomalies[1].severity).toBe('WARN');
   });
+
+  it('should clear the buffer when query params change (no stale-series flash)', async () => {
+    const chartRef = makeChartRef();
+    let metric = 'latency_ms';
+    const { result, rerender } = renderHook(
+      () =>
+        useRealtimeChartBuffer({
+          chartRef,
+          siteId: 'test',
+          metric,
+          range: '24h',
+          from: new Date(0),
+          to: new Date(1000),
+          seriesId: 'primary',
+          mode: 'mock',
+        }),
+      { wrapper }
+    );
+
+    await act(async () => {
+      await Promise.resolve();
+      await vi.advanceTimersByTimeAsync(10);
+    });
+    expect(result.current.bufferRef.current.length).toBe(1);
+
+    // While the new query is pending, data is undefined → buffer must drop
+    // so the old metric's trace can't linger on the chart.
+    metric = 'throughput_rps';
+    rerender();
+    expect(result.current.bufferRef.current.length).toBe(0);
+  });
+
+  it('should clamp a crafted from>to window to an empty range', async () => {
+    const chartRef = makeChartRef();
+    const fetchHistorical = vi.fn().mockResolvedValue({
+      siteId: 'test',
+      metric: 'latency_ms',
+      unit: 'ms',
+      lastTimestampMs: 1000,
+      points: [],
+    });
+    vi.mocked(getDataSource).mockReturnValue({
+      mode: 'mock',
+      fetchHistorical,
+      subscribeStream: vi.fn(() => unsubscribeMock),
+    } as unknown as TimeSeriesDataSource);
+
+    renderHook(
+      () =>
+        useRealtimeChartBuffer({
+          chartRef,
+          siteId: 'test',
+          metric: 'latency_ms',
+          range: 'custom',
+          from: new Date(5000),
+          to: new Date(1000), // inverted window
+          seriesId: 'primary',
+          mode: 'mock',
+        }),
+      { wrapper }
+    );
+
+    await act(async () => {
+      await Promise.resolve();
+      await vi.advanceTimersByTimeAsync(10);
+    });
+
+    expect(fetchHistorical).toHaveBeenCalledWith(
+      expect.objectContaining({ fromMs: 1000, toMs: 1000 }),
+      expect.anything()
+    );
+  });
 });

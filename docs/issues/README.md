@@ -20,6 +20,7 @@ files live in this directory, and status is mirrored here and in `CHANGELOG.md`.
 | [ISSUE-013](013-terminal-redesign.md) | Redesign: navy/cyan AI-look → ops-terminal direction (black canvas, amber chrome, status line) | Medium | 🟢 Done | `fix/issue-013-terminal-redesign` |
 | [ISSUE-014](014-terminal-typography-glow.md) | De-AI pass 2: Plex type, flat traces, caret blink, signal-colored KPI values | Low | 🟢 Done | `fix/issue-014-terminal-type` |
 | [ISSUE-015](015-element-audit.md) | Element audit: color-scheme, markLine clip, delta semantics, select shadow, skeleton, font docs | Low | 🟢 Done | `fix/issue-015-element-audit` |
+| [ISSUE-016](016-repo-sweep.md) | Repo-wide sweep: dead echarts regs, canvas min-h, per-site stream seed, test gaps, stale docs | Low | 🟢 Done | `fix/issue-016-repo-sweep` |
 
 **Status legend:** 🔵 Open · 🟡 In progress · 🟢 Done (merged) · ⚪ Won't fix
 

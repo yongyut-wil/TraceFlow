@@ -6,6 +6,15 @@ versioning follows SemVer.
 ## [Unreleased]
 
 ### Fixed
+- Repo-wide sweep (ISSUE-016): dead ECharts registrations removed;
+  `EChartCanvas` no longer forces a 300px min-height inside the 250px
+  correlation panel; mock stream seeds per-site (distinct node traces);
+  architecture.svg / README / DESIGN.md / BRANCHING.md synced to the
+  terminal scheme and actual conventions
+- Test coverage backfilled: buffer clear on param change, `from>to` clamp,
+  literal URL-param parsers (34 tests) (ISSUE-016)
+
+### Changed
 - Element audit pass (ISSUE-015): `colorScheme: dark` on `<html>` so native
   pickers/scrollbars render dark; markLine labels no longer clip at the grid
   edge; anomaly DELTA column colors by row severity; select popovers drop

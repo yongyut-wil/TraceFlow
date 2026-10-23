@@ -15,7 +15,7 @@ always pass: `lint` + `typecheck` + `vitest` + `playwright` + `build`.
 Rules:
 
 - One branch per issue (`fix/issue-NNN-slug`); never commit directly to `master`.
-- Branches are short-lived: open → implement → verify loop → merge (squash) → delete.
+- Branches are short-lived: open → implement → verify loop → merge `--no-ff` → delete.
 - For batched fix trains (like the post-review train), land each issue as a
   separate commit on a `release/x.y.z` branch, then merge `--no-ff` to `master`.
 - No `force-push`, no history rewrite on `master`.

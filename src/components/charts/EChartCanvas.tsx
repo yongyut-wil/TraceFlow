@@ -61,5 +61,5 @@ export function EChartCanvas({
     });
   }, [initialOption]);
 
-  return <div ref={containerRef} className={cn('h-full w-full min-h-[300px]', className)} />;
+  return <div ref={containerRef} className={cn('h-full w-full', className)} />;
 }
