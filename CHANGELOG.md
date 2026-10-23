@@ -3,6 +3,19 @@
 All notable changes to TraceFlow. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 versioning follows SemVer.
 
+## [Unreleased]
+
+### Changed
+- `DESIGN.md` rewritten as design-system v3 — frontmatter colors corrected to
+  the terminal palette (was the pre-ISSUE-013 Material scheme), all six
+  surface tiers documented, plus states matrix, motion spec, component
+  anatomy, data-viz rules, and don'ts (ISSUE-017)
+- Font CSS variables renamed `--font-inter`/`--font-jetbrains-mono` →
+  `--font-plex-sans`/`--font-plex-mono`; page title/description now
+  "Telemetry Terminal" / ops-terminal (ISSUE-017)
+- README: emoji dropped repo-wide, terminal token palette SVG added under
+  Design system, stale counts/wording synced to v0.4.0 reality
+
 ## [0.4.0] - 2026-10-23
 
 Terminal redesign + hardening train — "ops terminal, not SaaS dashboard".

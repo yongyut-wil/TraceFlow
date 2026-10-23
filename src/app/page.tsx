@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { DashboardContent } from '@/components/dashboard/DashboardContent';
 
 export const metadata = {
-  title: 'TraceFlow — Mission Control',
+  title: 'TraceFlow — Telemetry Terminal',
 };
 
 export default function Home() {

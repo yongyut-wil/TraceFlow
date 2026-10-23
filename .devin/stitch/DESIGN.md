@@ -1,53 +1,44 @@
 ---
 name: TraceFlow
+version: 3.0
+direction: ops-terminal
 colors:
-  surface: '#10131a'
-  surface-dim: '#10131a'
-  surface-bright: '#363940'
-  surface-container-lowest: '#0b0e14'
-  surface-container-low: '#181c22'
-  surface-container: '#1c2026'
-  surface-container-high: '#272a31'
-  surface-container-highest: '#31353c'
-  on-surface: '#e0e2eb'
-  on-surface-variant: '#bac9cc'
-  inverse-surface: '#e0e2eb'
-  inverse-on-surface: '#2d3037'
-  outline: '#849396'
-  outline-variant: '#3b494c'
-  surface-tint: '#00daf3'
-  primary: '#c3f5ff'
-  on-primary: '#00363d'
-  primary-container: '#00e5ff'
-  on-primary-container: '#00626e'
-  inverse-primary: '#006875'
-  secondary: '#bdc2ff'
-  on-secondary: '#131e8c'
-  secondary-container: '#2f3aa3'
-  on-secondary-container: '#a8afff'
-  tertiary: '#a8ffd2'
-  on-tertiary: '#003824'
-  tertiary-container: '#5be9ad'
-  on-tertiary-container: '#006645'
-  error: '#ffb4ab'
-  on-error: '#690005'
-  error-container: '#93000a'
-  on-error-container: '#ffdad6'
-  primary-fixed: '#9cf0ff'
-  primary-fixed-dim: '#00daf3'
-  on-primary-fixed: '#001f24'
-  on-primary-fixed-variant: '#004f58'
-  secondary-fixed: '#e0e0ff'
-  secondary-fixed-dim: '#bdc2ff'
-  on-secondary-fixed: '#000767'
-  on-secondary-fixed-variant: '#2f3aa3'
-  tertiary-fixed: '#6ffbbe'
-  tertiary-fixed-dim: '#4edea3'
-  on-tertiary-fixed: '#002113'
-  on-tertiary-fixed-variant: '#005236'
-  background: '#10131a'
-  on-background: '#e0e2eb'
-  surface-variant: '#31353c'
+  # Surface ladder — true-black canvas up to elevated panels.
+  surface: '#0b0b0e'
+  surface-dim: '#000000'
+  surface-bright: '#1c1c22'
+  surface-container-lowest: '#000000'
+  surface-container-low: '#0b0b0e'
+  surface-container: '#111116'
+  surface-container-high: '#16161c'
+  surface-container-highest: '#1c1c22'
+  on-surface: '#f2efe9'
+  on-surface-variant: '#9c9ca6'
+  inverse-surface: '#f2efe9'
+  inverse-on-surface: '#000000'
+  outline: '#33333b'
+  outline-variant: '#1e1e24'
+  surface-tint: '#ffb000'
+  primary: '#ffb000'
+  on-primary: '#000000'
+  primary-container: '#1c1c22'
+  on-primary-container: '#ffb000'
+  inverse-primary: '#ffb000'
+  secondary: '#6fa8dc'
+  on-secondary: '#000000'
+  secondary-container: '#16161c'
+  on-secondary-container: '#6fa8dc'
+  tertiary: '#2fbf71'
+  on-tertiary: '#000000'
+  tertiary-container: '#111116'
+  on-tertiary-container: '#2fbf71'
+  error: '#e5484d'
+  on-error: '#f2efe9'
+  error-container: '#1c1c22'
+  on-error-container: '#e5484d'
+  background: '#000000'
+  on-background: '#f2efe9'
+  surface-variant: '#121218'
 typography:
   headline-xl:
     fontFamily: IBM Plex Sans
@@ -90,9 +81,9 @@ typography:
     lineHeight: 16px
   data-mono-xl:
     fontFamily: IBM Plex Mono
-    fontSize: 24px
+    fontSize: 26px
     fontWeight: '500'
-    lineHeight: 28px
+    lineHeight: 32px
     letterSpacing: -0.03em
   data-mono-lg:
     fontFamily: IBM Plex Mono
@@ -128,41 +119,152 @@ spacing:
   space-md: 0.5rem
   space-lg: 0.75rem
   space-xl: 1rem
+motion:
+  caret-blink: 1.1s steps(1) infinite
+  transition-fast: 120ms linear
+  transition-default: 150ms linear
+  reduced-motion: all animation removed
 ---
 
-## Brand & Style
+# TraceFlow Design System v3 — Ops Terminal
 
-This design system delivers the ergonomic rigor, spatial efficiency, and optical clarity required for high-frequency telemetry, avionics, aerospace operations, and mission-critical systems engineering. It transforms dense data streams into rapid situational awareness through high-contrast graphic delineation, zero ornamental distortion, and instrument-grade chromatic signalling.
+## Direction
 
-The visual style combines technical minimalism with high-precision instrumentation aesthetics:
-- **Zero-Blur Precision:** Avoid ambient blur, drop shadows, or fuzzy skeuomorphic lighting. Spatial relationships rely exclusively on hairline structural lines, discrete surface luminance shifts, and disciplined tabular packing.
-- **Instrument Signal Architecture:** Deep, light-absorbent base backgrounds anchor vibrant oscilloscope traces. High-energy spectral accents (signal amber, trace steel, live green, warning orange, anomaly red) serve functional data visualization purposes, immediately denoting sensor states, delta variations, and critical threshold breaches.
-- **Operator Ergonomics:** Tailored for multi-monitor setups, dark environment operations centers, and extended tactical focus sessions. Contrast ratios exceed WCAG AAA standards for critical telemetry, eliminating visual fatigue while preserving instant peripheral recognition of state shifts.
+**"Ops terminal, not SaaS dashboard."** Bloomberg-terminal / operator-console
+conventions: a true-black canvas, warm-zinc surface tiers, one amber key color,
+tabular numerics, and information density over decoration. Every visual
+decision must read as *instrumentation*, not marketing.
 
-## Colors
+Supersedes: v1 navy/cyan mission-control scheme (ISSUE-013), v2 type/glow
+patch (ISSUE-014).
 
-> **v2 — Terminal direction (ISSUE-013):** the palette below supersedes the
-> original navy/cyan scheme. The shell now reads as an ops terminal:
-> true-black canvas, warm-neutral zinc tiers, amber key-color chrome.
+## Core rules (non-negotiable)
 
-### Surface Tiers
-- **Canvas Base (`#000000`):** True black terminal void for all monitors, viewports, and background grids.
-- **Surface Level 1 (`#0B0B0E`):** Structural panels, telemetry dock sidebars, persistent mastheads, and dock matrices.
-- **Surface Level 2 (`#111116`):** Focused modules, interactive instrument cells, nested metric cards, and table headers.
-- **Surface Level 3 (`#1C1C22`):** Hover states, active segmented switches, popovers, and elevated modal panels.
+1. **Zero radius** — every corner is square. `--radius-*: 0`.
+2. **No fuzzy light** — no drop shadows, blurs, glows, or gradients. Separation
+   comes from hairline borders and discrete surface steps only.
+3. **Hairlines only** — 1px borders; structural `#1E1E24`, interactive
+   `#33333B`. Never 2px+ chrome.
+4. **Signal color carries meaning** — a color on screen always encodes state
+   (live/warn/crit/brand/compare). Never decorate with signal hues.
+5. **Reduced motion honored** — `caret-blink` and any animation must have a
+   `motion-reduce` path.
+6. **Tabular numerics** — all data figures use IBM Plex Mono with
+   `tabular-nums`; numbers right-align in columns.
 
-### Structural Borders
-- **Border Default (`#1E1E24`):** 1px hairline division for non-critical card partitions, grid channels, and frame lines.
-- **Border Accent / Active (`#33333B`):** 1px hairline for focused panel boundaries, active inputs, and divider lines across high-density layouts.
+## Tokens
 
-### Telemetry Signal Accents
-- **Signal Key Amber (`#FFB000`):** Brand mark, primary telemetry trace, active scrubber cursors, selection highlights, function-key active states.
-- **Signal Trace Steel (`#6FA8DC`):** Secondary delta streams, reference wave overlays, auxiliary sensor channels.
-- **Live Pulse Green (`#2FBF71`):** Nominal telemetry states, live stream heartbeats, steady-state feeds.
-- **Warning Orange (`#FB923C`):** Threshold ceiling breaches, margin warnings, non-fatal anomalies — shifted orange to stay distinct from brand amber.
-- **Anomaly Red (`#E5484D`):** Critical aborts, terminal deviations, critical sensor alerts, instantaneous dropouts.
+### Surfaces (6 tiers)
 
-### Typography & Foreground
-- **Text Primary (`#F2EFE9`):** Warm ivory — direct numeric readouts, tactical state indicators, primary labels.
-- **Text Secondary (`#9C9CA6`):** Axis labels, sub-metrics, stationary units, column definitions.
-- **Text Muted (`#55555E`):** Disabled parameters, secondary grid markings, baseline ticks.
+| Token | Hex | Role |
+|---|---|---|
+| `background` | `#000000` | True-black terminal void — page canvas, chart plot |
+| `card` | `#0B0B0E` | Structural panels, sidebars, mastheads |
+| `muted` | `#111116` | Focused modules, table headers, table zebra |
+| `raised` | `#121218` | KPI/data cells elevated one step over `card` |
+| `popover` | `#16161C` | Floating surfaces — selects, popovers, tooltip |
+| `accent` | `#1C1C22` | Hover/active fill — pressed keys, selected rows |
+
+### Borders
+
+| Token | Hex | Role |
+|---|---|---|
+| `border` / `input` | `#1E1E24` | Structural hairlines — card partitions, grid channels |
+| `edge` | `#33333B` | Interactive chrome — control outlines, focused inputs, select triggers |
+| `ring` | `#FFB000` | `:focus-visible` keyboard ring only |
+
+### Signals
+
+| Token | Hex | Meaning |
+|---|---|---|
+| `primary` | `#FFB000` | Brand mark, primary trace, active function-key, caret, selection |
+| `secondary` | `#6FA8DC` | Correlation/compare trace, auxiliary channel |
+| `live` | `#2FBF71` | Nominal/connected state, live indicator |
+| `warn` | `#FB923C` | Threshold breach, WARN severity (orange — distinct from brand amber) |
+| `crit` / `destructive` | `#E5484D` | CRIT severity, abort states, destructive actions |
+
+### Text
+
+| Token | Hex | Role |
+|---|---|---|
+| `foreground` | `#F2EFE9` | Warm ivory — values, labels, primary copy |
+| `muted-foreground` | `#9C9CA6` | Axis labels, units, column headers, meta |
+| `dim` (`--text-dim`) | `#55555E` | Disabled/placeholder/`--` — never informative text (sub-AA) |
+
+## Typography
+
+| Style | Font | Size/Line/Track | Usage |
+|---|---|---|---|
+| `headline-xl` | Plex Sans 600 | 32/38 −0.02em | Page titles (unused in dashboard — reserved) |
+| `headline-lg` | Plex Sans 600 | 22/28 −0.01em | Section titles |
+| `headline-md` | Plex Sans 600 | 16/22 −0.005em | Panel lead text |
+| `body-md` | Plex Sans 400 | 13/18 | Default UI copy |
+| `data-mono-xl` (`--text-value`) | Plex Mono 500 | 26/32 −0.03em | KPI numbers |
+| `data-mono-lg` | Plex Mono 500 | 16/20 −0.02em | Select values, node id |
+| `data-mono-md` | Plex Mono 400 | 12/16 −0.01em | Table cells, chart ticks, badges |
+| `data-mono-sm` (`--text-mini`) | Plex Mono 400 | 10/14 0 | Meta rows, status bar |
+| `label-caps` (`--text-micro`) | Plex Mono 600 | 9/12 +0.08em | Panel headers, KPI labels, function keys |
+
+Tracking is per-tier — **never** apply blanket `tracking-tight` to `.font-mono`.
+
+## Spacing
+
+Scale maps 1:1 to Tailwind steps — use the step, not a raw literal:
+
+| Token | rem | px | Tailwind |
+|---|---|---|---|
+| `space-xs` | 0.125 | 2 | `0.5` |
+| `space-sm` | 0.25 | 4 | `1` |
+| `space-md` | 0.5 | 8 | `2` |
+| `space-lg` | 0.75 | 12 | `3` |
+| `space-xl` | 1 | 16 | `4` |
+| `gutter` / `gutter-desktop` | 0.5 / 0.75 | 8 / 12 | `gap-2` / `gap-3` |
+
+## States
+
+| State | Treatment |
+|---|---|
+| Hover | `bg-accent` fill or `edge` border brighten — never scale/shadow |
+| Active/selected | `bg-primary text-primary-foreground` (amber key) for toggles |
+| Focus (keyboard) | `focus-visible:ring-1 ring-ring` amber outline — always visible |
+| Disabled | `dim` text + `border` outline — no opacity fades below AA floor |
+| Loading | `Skeleton` on `bg-accent` (visible on black) — never spinners on data |
+| Empty | `muted-foreground` mono copy, `--` glyph placeholders in `dim` |
+| Error | `crit` text/badge + literal message — panels degrade independently |
+| Live pulse | `●` glyph with `caret-blink` (hard `steps(1)` blink, 1.1s) |
+
+## Component anatomy
+
+- **Masthead** — `card` tier, `label-caps` wordmark + blinking `▮` caret,
+  right-aligned controls; `edge`-bordered selects.
+- **Function-key range strip** — `label-caps` keys `[1H] [6H] [24H] [7D]
+  [CUSTOM]`; active = `bg-primary` black text; inactive = `edge` outline.
+- **KPI cells** — `raised` tier, `label-caps` name, `data-mono-xl` value in
+  its signal color, `data-mono-sm` meta line. No accent border — the value's
+  color is the signal.
+- **Charts** — canvas `#000`, gridlines `border` at 70% alpha, flat 1.5px
+  traces (`primary` main / `secondary` compare), WARN/CRIT `markLine` dashed
+  with labels inside the grid. Never area-fill gradients.
+- **Anomaly table** — `card` panel, `muted` zebra rows + header, severity
+  `Badge` (warn/crit colors), right-aligned numerics, `data-mono-md` cells.
+- **Status bar** — bottom strip, `data-mono-sm` muted meta: terminal id, node,
+  buffered count, connection glyph, live UTC clock.
+- **Tooltip/popover** — `popover` tier, `border` hairline, zero shadow,
+  `data-mono-sm` content.
+- **Skeleton** — `bg-accent` blocks only; on true black nothing softer reads.
+
+## Data-viz rules
+
+- Colors come from `src/lib/chart-theme.ts` (`CHART_COLORS`) — the canvas
+  mirror of these tokens; **keep the two files in sync**.
+- LTTB sampling + `large` mode past 2k points; `useDirtyRect` on; animation
+  off for streaming series.
+- Shared charts join `echarts.connect` group `traceflow-group` (synced
+  crosshair + zoom).
+
+## Don'ts
+
+- No rounded corners, shadows, blur, gradient fills, or glow.
+- No `Inter`/`JetBrains` fallbacks — IBM Plex only.
+- No signal colors as decoration; no `--text-dim` on informative text.
+- No opacity-based "dimming" that drops below contrast floor — use tiers.
