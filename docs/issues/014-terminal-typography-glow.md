@@ -1,6 +1,6 @@
 # ISSUE-014 — terminal typography + de-glow pass
 
-**Status:** 🟢 Done
+**Status:** DONE
 **Branch:** `fix/issue-014-terminal-type`
 **Found by:** user feedback — after ISSUE-013 the palette read terminal, but the *typeface pair, uniform card borders, and glow effects* still read "AI dashboard".
 

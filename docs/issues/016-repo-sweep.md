@@ -1,6 +1,6 @@
 # ISSUE-016 — repo-wide sweep (final review)
 
-**Status:** 🟢 Done
+**Status:** DONE
 **Branch:** `fix/issue-016-repo-sweep`
 **Found by:** systematic 5-pass audit of every file/layer in the repo after ISSUE-013–015.
 

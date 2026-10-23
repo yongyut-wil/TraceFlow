@@ -1,6 +1,6 @@
 # ISSUE-013 — Terminal redesign (de-AI-ify)
 
-**Status:** 🟢 Done
+**Status:** DONE
 **Branch:** `fix/issue-013-terminal-redesign`
 **Found by:** user feedback — the navy + neon-cyan + caps-everywhere shell read as generic AI-generated dashboard.
 

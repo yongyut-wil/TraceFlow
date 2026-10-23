@@ -1,6 +1,6 @@
 # ISSUE-012 — a11y + edge-case polish
 
-**Status:** 🟢 Done
+**Status:** DONE
 **Branch:** `fix/issue-012-a11y-edge`
 **Found by:** final comprehensive audit (a11y deep-check, URL robustness, error paths, dependency hygiene)
 
