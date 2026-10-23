@@ -5,24 +5,24 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Providers } from "@/components/providers";
 
 const plexSans = IBM_Plex_Sans({
-  variable: "--font-inter",
+  variable: "--font-plex-sans",
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
 const plexMono = IBM_Plex_Mono({
-  variable: "--font-jetbrains-mono",
+  variable: "--font-plex-mono",
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: "TraceFlow — Mission Control",
-  description: "Mission-control real-time telemetry dashboard — 10k-point ring buffer, LTTB ECharts, hybrid Supabase/mock data layer",
+  title: "TraceFlow — Telemetry Terminal",
+  description: "Ops-terminal real-time telemetry dashboard — 10k-point ring buffer, LTTB ECharts, hybrid Supabase/mock data layer",
   openGraph: {
-    title: "TraceFlow — Mission Control",
-    description: "Mission-control real-time telemetry dashboard",
+    title: "TraceFlow — Telemetry Terminal",
+    description: "Ops-terminal real-time telemetry dashboard",
     type: "website",
   },
 };
