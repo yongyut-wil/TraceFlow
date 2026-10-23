@@ -3,7 +3,11 @@
 All notable changes to TraceFlow. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 versioning follows SemVer.
 
-## [Unreleased]
+## [0.4.2] - 2026-10-23
+
+CI enforcement and e2e expansion — every push/PR now runs the full local
+gate remotely, and browser coverage grew from a 3-test smoke to a 12-test
+interaction suite.
 
 ### Added
 - GitHub Actions CI gate (`.github/workflows/ci.yml`) — lint, typecheck,

@@ -12,6 +12,7 @@
 ![React](https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=000)
 ![TypeScript](https://img.shields.io/badge/TypeScript_strict-3178C6?logo=typescript&logoColor=fff)
 ![Tests](https://img.shields.io/badge/tests-34_unit_%2B_12_e2e-2FBF71)
+[![CI](https://github.com/yongyut-wil/TraceFlow/actions/workflows/ci.yml/badge.svg)](https://github.com/yongyut-wil/TraceFlow/actions)
 ![License](https://img.shields.io/badge/license-MIT-FFB000)
 
 </div>

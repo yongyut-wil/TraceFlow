@@ -1,6 +1,6 @@
 {
   "name": "traceflow-app",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Ops-terminal real-time telemetry dashboard — 10k-point ring buffer, LTTB ECharts, hybrid Supabase/mock data layer",
   "private": true,
   "license": "MIT",
