@@ -53,15 +53,6 @@ export function SyncedCorrelationChart({ chartRef, metric, status }: SyncedCorre
         animation: false,
         lineStyle: { color: CHART_COLORS.secondary, width: 1.2 },
         itemStyle: { color: CHART_COLORS.secondary },
-        areaStyle: {
-          color: {
-            type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
-            colorStops: [
-              { offset: 0, color: 'rgba(111, 168, 220, 0.16)' },
-              { offset: 1, color: 'rgba(111, 168, 220, 0)' },
-            ],
-          },
-        },
         data: [],
       },
     ],
@@ -72,7 +63,7 @@ export function SyncedCorrelationChart({ chartRef, metric, status }: SyncedCorre
       <div className="flex h-8 items-center justify-between border-b border-border bg-muted/30 px-3">
         <div className="flex items-center gap-2">
           <span className="h-2 w-0.5 bg-secondary" />
-          <span className="font-mono text-mini font-semibold uppercase tracking-[0.08em] text-foreground">Correlation Chart</span>
+          <span className="font-mono text-mini font-semibold uppercase tracking-[0.08em] text-primary">Correlation Chart</span>
           <span className="font-mono text-micro text-muted-foreground">{metric} · SYNCED CROSSHAIR</span>
         </div>
         <div className="font-mono text-micro uppercase text-muted-foreground">{status}</div>

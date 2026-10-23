@@ -17,4 +17,4 @@ export const CHART_COLORS = {
   crit: '#E5484D',
 } as const;
 
-export const CHART_FONT = 'JetBrains Mono';
+export const CHART_FONT = 'IBM Plex Mono';
