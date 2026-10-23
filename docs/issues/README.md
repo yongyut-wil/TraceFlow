@@ -22,6 +22,7 @@ files live in this directory, and status is mirrored here and in `CHANGELOG.md`.
 | [ISSUE-015](015-element-audit.md) | Element audit: color-scheme, markLine clip, delta semantics, select shadow, skeleton, font docs | Low | DONE | `fix/issue-015-element-audit` |
 | [ISSUE-016](016-repo-sweep.md) | Repo-wide sweep: dead echarts regs, canvas min-h, per-site stream seed, test gaps, stale docs | Low | DONE | `fix/issue-016-repo-sweep` |
 | [ISSUE-017](017-design-system-v3.md) | DESIGN.md frontmatter was the old scheme; font var names stale; spec missing tiers/states/motion/component anatomy | Medium | DONE | `fix/issue-017-design-system-v3` |
+| [ISSUE-018](018-ci-workflow.md) | No remote enforcement of the master gate (lint/typecheck/test/build/e2e) | Low | DONE | `feat/issue-018-ci` |
 
 **Status legend:** OPEN · WIP · DONE (merged) · WONTFIX
 
