@@ -37,12 +37,12 @@ solving all three:
 
 - **Primary telemetry signal** — 24h historical window + live stream on one trace, WARN/CRIT threshold markLines, `inside` + `slider` dataZoom
 - **Synced correlation chart** — second metric on a shared `echarts.connect` group (synchronized crosshair + zoom), pickable from the header
-- **Anomaly inspector** — severity-badged live feed; click 🔍 to zoom the primary chart ±2 min around any event
+- **Anomaly inspector** — severity-badged live feed; click a row's zoom action to focus the primary chart ±2 min around any event
 - **URL as the single source of truth** — `siteId`, `metric`, `compare`, `range` (`1h/6h/24h/7d/custom`), `mode`, `from`/`to` via nuqs; survives reload and is shareable
 - **Pause/resume** — freeze the stream without losing buffered data
 - **KPI row** — current value, window mean, peak, retained anomalies with skeleton loading and `text-dim` empty tiers
 - **Responsive floor** — measured `overflowX = 0` from 2560px down to 320px; tables and controls wrap instead of clipping
-- **Mission-control design system** — zero radius, hairline borders, 3-tier border hierarchy, signal-color tokens, `prefers-reduced-motion` support
+- **Terminal design system** — zero radius, hairline borders, 3-tier border hierarchy, signal-color tokens, `prefers-reduced-motion` support
 - **Security posture** — CSP + nosniff + DENY framing + Referrer-Policy on every route; zod-validated external payloads; no secrets in repo
 
 ## Screenshots
@@ -148,7 +148,7 @@ src/
 
 ## Development docs
 
-- 📋 [`docs/issues/`](docs/issues/README.md) — local issue tracker (10 closed)
-- 🌿 [`docs/BRANCHING.md`](docs/BRANCHING.md) — trunk-based, `fix/issue-NNN-*`, `release/x.y.z`
-- 📦 [`CHANGELOG.md`](CHANGELOG.md) — Keep-a-Changelog + SemVer, latest **v0.3.0**
-- 🎨 [`.devin/stitch/DESIGN.md`](.devin/stitch/DESIGN.md) — design token source of truth
+- [`docs/issues/`](docs/issues/README.md) — local issue tracker (16 closed)
+- [`docs/BRANCHING.md`](docs/BRANCHING.md) — trunk-based, `fix/issue-NNN-*`, `release/x.y.z`
+- [`CHANGELOG.md`](CHANGELOG.md) — Keep-a-Changelog + SemVer, latest **v0.4.0**
+- [`.devin/stitch/DESIGN.md`](.devin/stitch/DESIGN.md) — design token source of truth

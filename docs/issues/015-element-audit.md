@@ -1,6 +1,6 @@
 # ISSUE-015 — element-level audit pass
 
-**Status:** 🟢 Done
+**Status:** DONE
 **Branch:** `fix/issue-015-element-audit`
 **Found by:** element-by-element audit of every ui primitive + dashboard component after the terminal redesign (DOM-measured, not just visual).
 
