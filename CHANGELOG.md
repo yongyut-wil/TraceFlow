@@ -3,74 +3,60 @@
 All notable changes to TraceFlow. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 versioning follows SemVer.
 
-## [Unreleased]
+## [0.4.0] - 2026-10-23
 
-### Fixed
-- Repo-wide sweep (ISSUE-016): dead ECharts registrations removed;
-  `EChartCanvas` no longer forces a 300px min-height inside the 250px
-  correlation panel; mock stream seeds per-site (distinct node traces);
-  architecture.svg / README / DESIGN.md / BRANCHING.md synced to the
-  terminal scheme and actual conventions
-- Test coverage backfilled: buffer clear on param change, `from>to` clamp,
-  literal URL-param parsers (34 tests) (ISSUE-016)
-
-### Changed
-- Element audit pass (ISSUE-015): `colorScheme: dark` on `<html>` so native
-  pickers/scrollbars render dark; markLine labels no longer clip at the grid
-  edge; anomaly DELTA column colors by row severity; select popovers drop
-  `shadow-md`; skeleton uses `bg-accent` for visibility on black; DESIGN.md /
-  README font references synced to IBM Plex
-
-### Changed
-- Typefaces swapped Inter/JetBrains Mono → **IBM Plex Sans/Mono** (terminal
-  heritage digit shapes) (ISSUE-014)
-- Chart traces render as flat lines — gradient glow fills removed; live
-  indicator uses a hard-step caret blink instead of the SaaS ping halo
-  (ISSUE-014)
-- KPI values carry their signal color directly (Bloomberg convention);
-  left accent borders and raised surfaces dropped; panel titles render in
-  brand amber (ISSUE-014)
-
-### Fixed
-- **Terminal redesign (ISSUE-013):** palette moved from navy + neon cyan to
-  true-black canvas, warm-neutral zinc surface tiers, amber `#FFB000`
-  chrome/trace, steel-blue correlation, orange warn, warm ivory text —
-  DESIGN.md updated to the v2 Terminal scheme
-- Range selector renders as a function-key strip `[1H]…[CUSTOM]` with an
-  amber active key; wordmark gains a blinking block cursor (ISSUE-013)
-- Anomaly table uses zebra rows and right-aligned numeric columns (ISSUE-013)
-- All brand assets regenerated in the new palette (icon, logo, hero, mobile,
-  zoom-inspect, OG image, live-demo GIF) (ISSUE-013)
+Terminal redesign + hardening train — "ops terminal, not SaaS dashboard".
+Closes ISSUE-011 through ISSUE-016.
 
 ### Added
 - Bottom terminal status bar: `TERM·01`, node id, buffered point count,
   connection status, blinking cursor, live UTC clock (ISSUE-013)
+- `pnpm test:e2e` script (ISSUE-012)
+- Type-scale tokens `--text-micro`/`--text-mini`/`--text-value` replacing all
+  `text-[Npx]` literals (ISSUE-011)
+- 5 tests backfilled: buffer clear on param change, `from>to` clamp, literal
+  URL-param parsers — 34 unit tests total (ISSUE-016)
+
+### Changed
+- **Terminal redesign (ISSUE-013):** true-black canvas, warm-zinc surface
+  tiers, amber `#FFB000` chrome/trace, steel-blue correlation, orange warn,
+  warm ivory text — DESIGN.md updated to the v2 Terminal scheme
+- Range selector renders as a function-key strip `[1H]…[CUSTOM]`; wordmark
+  gains a blinking block cursor (ISSUE-013)
+- Anomaly table uses zebra rows and right-aligned numeric columns (ISSUE-013)
+- Typefaces swapped Inter/JetBrains Mono → **IBM Plex Sans/Mono** (ISSUE-014)
+- Chart traces render as flat lines — gradient glow fills removed; live
+  indicator uses a hard-step caret blink (ISSUE-014)
+- KPI values carry their signal color directly; left accent borders and
+  raised surfaces dropped; panel titles render in brand amber (ISSUE-014)
+- `--accent` maps to the hover/active tier per spec; `.font-mono` drops
+  blanket `tracking-tight` for per-tier tracking; `ZoomIn` uses a real
+  `<Tooltip>` (ISSUE-011)
+- Element audit (ISSUE-015): `colorScheme: dark` on `<html>` for native
+  dark pickers/scrollbars; markLine labels no longer clip at the grid edge;
+  anomaly DELTA column colors by row severity; select popovers drop
+  `shadow-md`; skeleton uses `bg-accent` for visibility
+- `EChartCanvas` no longer forces a 300px min-height inside the 250px
+  correlation panel; mock stream seeds per-site for distinct node traces
+  (ISSUE-016)
+- All brand assets regenerated in the terminal palette (icon, logo, hero,
+  mobile, zoom-inspect, OG image, live-demo GIF) (ISSUE-013)
 
 ### Fixed
-- Icon-only ZoomIn button now has `aria-label`; decorative icons marked
-  `aria-hidden`; status badge is `aria-live` (ISSUE-012)
-- Anomaly empty-state uses `text-muted-foreground` — informative text no
-  longer uses the sub-AA `text-dim` tier (ISSUE-012)
-- Stale-series flash: buffer is dropped as soon as query params change so
-  the previous metric's trace can't linger (ISSUE-012)
-- `?metric=` is literal-validated (invalid → default) and a crafted
-  `?from>&to=` window clamps to empty instead of an inverted range query
+- A11y (ISSUE-012): `aria-label` on icon-only ZoomIn, `aria-hidden` on
+  decorative icons, `aria-live` status badge, empty-state contrast raised
+  from sub-AA `text-dim` to `text-muted-foreground`
+- Stale-series flash: buffer is dropped as soon as query params change
   (ISSUE-012)
+- `?metric=` literal-validated (invalid → default); crafted `?from>&to=`
+  window clamps instead of inverting the query (ISSUE-012)
+- architecture.svg / README / DESIGN.md / BRANCHING.md synced to the
+  terminal scheme and actual conventions (ISSUE-016)
 
 ### Removed
 - `zustand` dependency and unused `tabs.tsx` stub (ISSUE-012)
-
-### Added
-- `pnpm test:e2e` script (ISSUE-012)
-
-### Changed
-- `--accent` now maps to spec L3 `#1A2438` (hover/active tier) — was L2
-  `#121A2A` (ISSUE-011)
-- Type scale tokenized: `--text-micro`/`--text-mini`/`--text-value` replace
-  all `text-[Npx]` literals; `.font-mono` drops blanket `tracking-tight`
-  for per-tier tracking (ISSUE-011)
-- `ZoomIn` row action uses a real `<Tooltip>` instead of `title=`
-  (ISSUE-011)
+- Unused ECharts registrations (BarChart, Dataset, Legend, MarkPoint,
+  UniversalTransition) (ISSUE-016)
 
 ## [0.3.0] - 2025-10-22
 
