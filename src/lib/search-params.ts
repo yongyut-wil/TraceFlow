@@ -13,7 +13,7 @@ export const COMPARE_OPTIONS = [...METRICS.map((m) => m.id), 'none'] as const;
 
 export const dashboardSearchParams = {
   siteId: parseAsString.withDefault('node-us-east-01'),
-  metric: parseAsString.withDefault('latency_ms'),
+  metric: parseAsStringLiteral(METRICS.map((m) => m.id)).withDefault('latency_ms'),
   compare: parseAsStringLiteral(COMPARE_OPTIONS).withDefault('throughput_rps'),
   range: parseAsStringLiteral(TIME_RANGES).withDefault('24h'),
   from: parseAsIsoDateTime,

@@ -108,7 +108,9 @@ export function useRealtimeChartBuffer({
     queryKey: ['historical', mode, siteId, metric, range, from?.getTime(), to?.getTime()],
     queryFn: ({ signal }) => {
       const toMs = to?.getTime() ?? Date.now();
-      const fromMs = from?.getTime() ?? toMs - (RANGE_MS[range] ?? RANGE_MS['24h']);
+      // Clamp a crafted ?from>&to= window so it degrades to an empty range
+      // rather than an inverted gte/lte query.
+      const fromMs = Math.min(from?.getTime() ?? toMs - (RANGE_MS[range] ?? RANGE_MS['24h']), toMs);
       const ds = getDataSource(mode);
       return ds.fetchHistorical({ siteId, metric, fromMs, toMs, limit: maxPoints }, signal);
     },
@@ -118,9 +120,16 @@ export function useRealtimeChartBuffer({
     retry: 1,
   });
 
-  // Initialize the ring buffer from the historical window.
+  // Initialize the ring buffer from the historical window. When params change
+  // the query key changes and data goes undefined — drop the previous metric's
+  // series so the stale trace doesn't linger while the new window resolves.
   useEffect(() => {
-    if (!historicalData) return;
+    if (!historicalData) {
+      bufferRef.current = [];
+      lastTimestampRef.current = 0;
+      isDirtyRef.current = true;
+      return;
+    }
     const trimmed =
       historicalData.points.length > maxPoints
         ? historicalData.points.slice(historicalData.points.length - maxPoints)

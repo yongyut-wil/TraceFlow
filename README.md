@@ -100,7 +100,7 @@ pnpm dev          # http://localhost:3000
 pnpm run lint         # eslint
 pnpm run typecheck    # tsc --noEmit
 pnpm test             # vitest — 29 unit tests
-pnpm exec playwright test   # 3 e2e (needs dev server on :3000)
+pnpm test:e2e         # 3 playwright tests (needs dev server on :3000)
 pnpm run build && pnpm start
 ```
 

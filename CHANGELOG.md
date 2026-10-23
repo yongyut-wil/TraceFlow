@@ -5,6 +5,23 @@ versioning follows SemVer.
 
 ## [Unreleased]
 
+### Fixed
+- Icon-only ZoomIn button now has `aria-label`; decorative icons marked
+  `aria-hidden`; status badge is `aria-live` (ISSUE-012)
+- Anomaly empty-state uses `text-muted-foreground` — informative text no
+  longer uses the sub-AA `text-dim` tier (ISSUE-012)
+- Stale-series flash: buffer is dropped as soon as query params change so
+  the previous metric's trace can't linger (ISSUE-012)
+- `?metric=` is literal-validated (invalid → default) and a crafted
+  `?from>&to=` window clamps to empty instead of an inverted range query
+  (ISSUE-012)
+
+### Removed
+- `zustand` dependency and unused `tabs.tsx` stub (ISSUE-012)
+
+### Added
+- `pnpm test:e2e` script (ISSUE-012)
+
 ### Changed
 - `--accent` now maps to spec L3 `#1A2438` (hover/active tier) — was L2
   `#121A2A` (ISSUE-011)

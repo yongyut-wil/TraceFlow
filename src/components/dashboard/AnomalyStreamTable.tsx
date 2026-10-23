@@ -52,7 +52,7 @@ export function AnomalyStreamTable({ anomalies, siteId, unit, status, onInspect 
           <tbody>
             {anomalies.length === 0 ? (
               <tr className="border-b border-border/50">
-                <td colSpan={6} className="px-3 py-6 text-center font-mono text-mini uppercase tracking-[0.08em] text-dim">
+                <td colSpan={6} className="px-3 py-6 text-center font-mono text-mini uppercase tracking-[0.08em] text-muted-foreground">
                   {emptyMessage}
                 </td>
               </tr>
@@ -80,6 +80,7 @@ export function AnomalyStreamTable({ anomalies, siteId, unit, status, onInspect 
                           <Button
                             variant="ghost"
                             size="icon"
+                            aria-label="Zoom primary chart to this event"
                             onClick={() => onInspect?.(row.timestampMs)}
                             className="h-6 w-6 rounded-none text-muted-foreground hover:text-primary"
                           />
