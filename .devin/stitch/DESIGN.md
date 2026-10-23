@@ -141,24 +141,28 @@ The visual style combines technical minimalism with high-precision instrumentati
 
 ## Colors
 
+> **v2 — Terminal direction (ISSUE-013):** the palette below supersedes the
+> original navy/cyan scheme. The shell now reads as an ops terminal:
+> true-black canvas, warm-neutral zinc tiers, amber key-color chrome.
+
 ### Surface Tiers
-- **Canvas Base (`#06090F`):** Deep space pitch; foundational void for all monitors, viewports, and background grids.
-- **Surface Level 1 (`#0D131F`):** Structural panels, telemetry dock sidebars, persistent mastheads, and dock matrices.
-- **Surface Level 2 (`#121A2A`):** Focused modules, interactive instrument cells, nested metric cards, and table headers.
-- **Surface Level 3 (`#1A2438`):** Hover states, active segmented switches, popovers, and elevated modal panels.
+- **Canvas Base (`#000000`):** True black terminal void for all monitors, viewports, and background grids.
+- **Surface Level 1 (`#0B0B0E`):** Structural panels, telemetry dock sidebars, persistent mastheads, and dock matrices.
+- **Surface Level 2 (`#111116`):** Focused modules, interactive instrument cells, nested metric cards, and table headers.
+- **Surface Level 3 (`#1C1C22`):** Hover states, active segmented switches, popovers, and elevated modal panels.
 
 ### Structural Borders
-- **Border Default (`#1E293B`):** 1px hairline division for non-critical card partitions, grid channels, and frame lines.
-- **Border Accent / Active (`#334155`):** 1px hairline for focused panel boundaries, active inputs, and divider lines across high-density layouts.
+- **Border Default (`#1E1E24`):** 1px hairline division for non-critical card partitions, grid channels, and frame lines.
+- **Border Accent / Active (`#33333B`):** 1px hairline for focused panel boundaries, active inputs, and divider lines across high-density layouts.
 
 ### Telemetry Signal Accents
-- **Signal Wave Cyan (`#00E5FF`):** Primary telemetry trace, active scrubber cursors, targeted crosshairs, selection highlights.
-- **Signal Trace Violet (`#818CF8`):** Secondary delta streams, reference wave overlays, auxiliary sensor channels.
-- **Live Pulse Emerald (`#10B981`):** Nominal telemetry states, live 60FPS stream heartbeats, steady-state telemetry feeds.
-- **Warning Gold (`#F59E0B`):** Threshold ceiling breaches, margin warnings, non-fatal anomalies.
-- **Anomaly Crimson (`#F43F5E`):** Critical aborts, terminal deviations, critical sensor alerts, instantaneous dropouts.
+- **Signal Key Amber (`#FFB000`):** Brand mark, primary telemetry trace, active scrubber cursors, selection highlights, function-key active states.
+- **Signal Trace Steel (`#6FA8DC`):** Secondary delta streams, reference wave overlays, auxiliary sensor channels.
+- **Live Pulse Green (`#2FBF71`):** Nominal telemetry states, live stream heartbeats, steady-state feeds.
+- **Warning Orange (`#FB923C`):** Threshold ceiling breaches, margin warnings, non-fatal anomalies — shifted orange to stay distinct from brand amber.
+- **Anomaly Red (`#E5484D`):** Critical aborts, terminal deviations, critical sensor alerts, instantaneous dropouts.
 
 ### Typography & Foreground
-- **Text Primary (`#F8FAFC`):** Direct numeric readouts, tactical state indicators, primary labels.
-- **Text Secondary (`#94A3B8`):** Axis labels, sub-metrics, stationary units, column definitions.
-- **Text Muted (`#475569`):** Disabled parameters, secondary grid markings, baseline ticks.
+- **Text Primary (`#F2EFE9`):** Warm ivory — direct numeric readouts, tactical state indicators, primary labels.
+- **Text Secondary (`#9C9CA6`):** Axis labels, sub-metrics, stationary units, column definitions.
+- **Text Muted (`#55555E`):** Disabled parameters, secondary grid markings, baseline ticks.

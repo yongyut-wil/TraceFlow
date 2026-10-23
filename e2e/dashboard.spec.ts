@@ -10,7 +10,7 @@ test('should render dashboard shell and mount canvas without errors', async ({ p
   await page.goto('/?mode=mock');
 
   // Verify header elements
-  await expect(page.locator('text=TraceFlow')).toBeVisible();
+  await expect(page.locator('text=TraceFlow').first()).toBeVisible();
   await expect(page.locator('text=node-us-east-01').first()).toBeVisible();
   await expect(page.locator('button', { hasText: '24h' }).first()).toBeVisible();
 

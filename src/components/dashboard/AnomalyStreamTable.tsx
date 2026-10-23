@@ -44,8 +44,8 @@ export function AnomalyStreamTable({ anomalies, siteId, unit, status, onInspect 
               <th className="border-b border-border px-2 py-1.5 font-normal sm:px-3">TIMESTAMP (UTC)</th>
               <th className="border-b border-border px-2 py-1.5 font-normal sm:px-3">SEV</th>
               <th className="border-b border-border px-2 py-1.5 font-normal sm:px-3">NODE</th>
-              <th className="border-b border-border px-2 py-1.5 font-normal sm:px-3">VALUE</th>
-              <th className="border-b border-border px-2 py-1.5 font-normal sm:px-3">DELTA</th>
+              <th className="border-b border-border px-2 py-1.5 font-normal text-right sm:px-3">VALUE</th>
+              <th className="border-b border-border px-2 py-1.5 font-normal text-right sm:px-3">DELTA</th>
               <th className="border-b border-border px-2 py-1.5 font-normal text-right sm:px-3">ACTION</th>
             </tr>
           </thead>
@@ -58,7 +58,7 @@ export function AnomalyStreamTable({ anomalies, siteId, unit, status, onInspect 
               </tr>
             ) : (
               anomalies.map((row) => (
-                <tr key={`${row.timestampMs}-${row.severity}`} className="border-b border-border/50 hover:bg-muted/30">
+                <tr key={`${row.timestampMs}-${row.severity}`} className="border-b border-border/50 odd:bg-muted/40 hover:bg-muted/60">
                   <td className="px-2 py-2 text-foreground sm:px-3">{fmtTs(row.timestampMs)}</td>
                   <td className="px-2 py-2 sm:px-3">
                     <Badge
@@ -71,8 +71,8 @@ export function AnomalyStreamTable({ anomalies, siteId, unit, status, onInspect 
                     </Badge>
                   </td>
                   <td className="px-2 py-2 text-muted-foreground sm:px-3">{siteId.toUpperCase().replaceAll('-', '_')}</td>
-                  <td className="px-2 py-2 text-foreground sm:px-3">{row.value.toFixed(1)} {unit}</td>
-                  <td className="px-2 py-2 text-crit sm:px-3">{fmtDelta(row.deltaPct)}</td>
+                  <td className="px-2 py-2 text-right text-foreground sm:px-3">{row.value.toFixed(1)} {unit}</td>
+                  <td className="px-2 py-2 text-right text-crit sm:px-3">{fmtDelta(row.deltaPct)}</td>
                   <td className="px-2 py-2 text-right sm:px-3">
                     <Tooltip>
                       <TooltipTrigger

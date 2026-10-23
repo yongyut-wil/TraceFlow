@@ -9,6 +9,7 @@ import { KpiCards } from './KpiCards';
 import { PrimaryTelemetryChart } from './PrimaryTelemetryChart';
 import { SyncedCorrelationChart } from './SyncedCorrelationChart';
 import { AnomalyStreamTable } from './AnomalyStreamTable';
+import { StatusBar } from './StatusBar';
 import type { EChartsCoreInstance } from '@/lib/echarts-setup';
 
 const INSPECT_WINDOW_MS = 120_000;
@@ -102,6 +103,8 @@ export function DashboardContent() {
           />
         </div>
       </div>
+
+      <StatusBar siteId={params.siteId} status={primary.status} points={primary.stats.count} />
     </>
   );
 }

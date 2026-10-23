@@ -54,7 +54,7 @@ export function PrimaryTelemetryChart({ chartRef, metric, thresholdWarning, thre
       },
       dataZoom: [
         { type: 'inside', throttle: 50 },
-        { type: 'slider', height: 20, bottom: 10, borderColor: CHART_COLORS.borderAccent, backgroundColor: CHART_COLORS.panel, fillerColor: 'rgba(0, 229, 255, 0.1)', handleStyle: { color: CHART_COLORS.accent }, textStyle: { color: CHART_COLORS.textSecondary, fontFamily: CHART_FONT, fontSize: 9 } }
+        { type: 'slider', height: 20, bottom: 10, borderColor: CHART_COLORS.borderAccent, backgroundColor: CHART_COLORS.panel, fillerColor: 'rgba(255, 176, 0, 0.1)', handleStyle: { color: CHART_COLORS.accent }, textStyle: { color: CHART_COLORS.textSecondary, fontFamily: CHART_FONT, fontSize: 9 } }
       ],
       series: [
         {
@@ -73,8 +73,8 @@ export function PrimaryTelemetryChart({ chartRef, metric, thresholdWarning, thre
             color: {
               type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
               colorStops: [
-                { offset: 0, color: 'rgba(0, 229, 255, 0.16)' },
-                { offset: 1, color: 'rgba(0, 229, 255, 0)' },
+                { offset: 0, color: 'rgba(255, 176, 0, 0.14)' },
+                { offset: 1, color: 'rgba(255, 176, 0, 0)' },
               ],
             },
           },

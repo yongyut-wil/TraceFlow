@@ -48,31 +48,34 @@
   --radius-xl: 0;
 }
 
+/* Terminal direction (ISSUE-013): true-black canvas + warm-neutral zinc
+   tiers replace the navy-blue palette. Amber #FFB000 is the brand/signal
+   key color; warn shifts orange so the two ambers stay distinguishable. */
 :root {
-  --background: #06090F;
-  --foreground: #F8FAFC;
-  --card: #0D131F;
-  --card-foreground: #F8FAFC;
-  --popover: #1A2438;
-  --popover-foreground: #F8FAFC;
-  --primary: #00E5FF;
-  --primary-foreground: #06090F;
-  --secondary: #818CF8;
-  --secondary-foreground: #F8FAFC;
-  --muted: #121A2A;
-  --muted-foreground: #94A3B8;
-  --text-dim: #475569;
-  --accent: #1A2438;
-  --accent-foreground: #F8FAFC;
-  --destructive: #F43F5E;
-  --border: #1E293B;
-  --input: #1E293B;
-  --ring: #00E5FF;
-  --live: #10B981;
-  --warn: #F59E0B;
-  --crit: #F43F5E;
-  --raised: #101B2C;
-  --edge: #334155;
+  --background: #000000;
+  --foreground: #F2EFE9;
+  --card: #0B0B0E;
+  --card-foreground: #F2EFE9;
+  --popover: #16161C;
+  --popover-foreground: #F2EFE9;
+  --primary: #FFB000;
+  --primary-foreground: #000000;
+  --secondary: #6FA8DC;
+  --secondary-foreground: #F2EFE9;
+  --muted: #111116;
+  --muted-foreground: #9C9CA6;
+  --text-dim: #55555E;
+  --accent: #1C1C22;
+  --accent-foreground: #F2EFE9;
+  --destructive: #E5484D;
+  --border: #1E1E24;
+  --input: #1E1E24;
+  --ring: #FFB000;
+  --live: #2FBF71;
+  --warn: #FB923C;
+  --crit: #E5484D;
+  --raised: #121218;
+  --edge: #33333B;
 }
 
 @layer base {

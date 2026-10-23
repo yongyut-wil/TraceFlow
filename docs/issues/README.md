@@ -17,6 +17,7 @@ files live in this directory, and status is mirrored here and in `CHANGELOG.md`.
 | [ISSUE-010](010-border-icon-semantics.md) | Interactive controls indistinguishable from structural borders; mismatched KPI icons | Low | 🟢 Done | `fix/issue-010-border-icon-semantics` |
 | [ISSUE-011](011-design-system-completeness.md) | Spec gaps: accent tier, untokenized type scale, blanket mono tracking, dead tooltip | Low | 🟢 Done | `fix/issue-011-design-tokens` |
 | [ISSUE-012](012-a11y-edge-polish.md) | a11y names/hidden icons, dim-contrast misuse, stale-series flash, loose URL params | Low | 🟢 Done | `fix/issue-012-a11y-edge` |
+| [ISSUE-013](013-terminal-redesign.md) | Redesign: navy/cyan AI-look → ops-terminal direction (black canvas, amber chrome, status line) | Medium | 🟢 Done | `fix/issue-013-terminal-redesign` |
 
 **Status legend:** 🔵 Open · 🟡 In progress · 🟢 Done (merged) · ⚪ Won't fix
 
