@@ -4,15 +4,15 @@
 
 # TraceFlow
 
-**Mission-control real-time telemetry dashboard**
+**Ops-terminal real-time telemetry dashboard**
 
 10,000-point ring buffer · LTTB-sampled canvas traces · Supabase Realtime + deterministic mock · URL-driven filters
 
 ![Next.js](https://img.shields.io/badge/Next.js_16-000?logo=next.js&logoColor=fff)
 ![React](https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=000)
 ![TypeScript](https://img.shields.io/badge/TypeScript_strict-3178C6?logo=typescript&logoColor=fff)
-![Tests](https://img.shields.io/badge/tests-29_unit_%2B_3_e2e-10B981)
-![License](https://img.shields.io/badge/license-MIT-00E5FF)
+![Tests](https://img.shields.io/badge/tests-34_unit_%2B_3_e2e-2FBF71)
+![License](https://img.shields.io/badge/license-MIT-FFB000)
 
 </div>
 
@@ -40,7 +40,8 @@ solving all three:
 - **Anomaly inspector** — severity-badged live feed; click a row's zoom action to focus the primary chart ±2 min around any event
 - **URL as the single source of truth** — `siteId`, `metric`, `compare`, `range` (`1h/6h/24h/7d/custom`), `mode`, `from`/`to` via nuqs; survives reload and is shareable
 - **Pause/resume** — freeze the stream without losing buffered data
-- **KPI row** — current value, window mean, peak, retained anomalies with skeleton loading and `text-dim` empty tiers
+- **KPI row** — current value, window mean, peak, retained anomalies — values carry their signal color, with skeleton loading
+- **Ops-terminal chrome** — function-key range strip `[1H]…[CUSTOM]`, blinking block caret, bottom status bar with live UTC clock
 - **Responsive floor** — measured `overflowX = 0` from 2560px down to 320px; tables and controls wrap instead of clipping
 - **Terminal design system** — zero radius, hairline borders, 3-tier border hierarchy, signal-color tokens, `prefers-reduced-motion` support
 - **Security posture** — CSP + nosniff + DENY framing + Referrer-Policy on every route; zod-validated external payloads; no secrets in repo
@@ -99,7 +100,7 @@ pnpm dev          # http://localhost:3000
 ```bash
 pnpm run lint         # eslint
 pnpm run typecheck    # tsc --noEmit
-pnpm test             # vitest — 29 unit tests
+pnpm test             # vitest — 34 unit tests
 pnpm test:e2e         # 3 playwright tests (needs dev server on :3000)
 pnpm run build && pnpm start
 ```
@@ -119,7 +120,7 @@ pnpm run build && pnpm start
 
 ## Design system
 
-Derived from `.devin/stitch/DESIGN.md` — avionics/mission-control aesthetics:
+Derived from `.devin/stitch/DESIGN.md` — ops-terminal (Bloomberg-style) conventions:
 
 - **Surfaces** `#000` canvas → `#0B0B0E` panel → `#111116` focused → `#121218` raised → `#1C1C22` elevated
 - **Border tiers** `#1E1E24` structural · `#33333B` interactive controls · signal-color accents
@@ -134,7 +135,7 @@ src/
 ├── app/                    # RSC shell, globals.css tokens
 ├── components/
 │   ├── charts/             # EChartCanvas (init/setOption/dispose lifecycle)
-│   ├── dashboard/          # HeaderFilterBar, KpiCards, charts, AnomalyStreamTable
+│   ├── dashboard/          # HeaderFilterBar, KpiCards, charts, AnomalyStreamTable, StatusBar
 │   └── ui/                 # shadcn primitives
 ├── hooks/                  # useRealtimeChartBuffer (ring buffer + rAF flush)
 ├── lib/
@@ -142,8 +143,8 @@ src/
 │   ├── echarts-setup.ts    # tree-shaken echarts singleton
 │   ├── chart-theme.ts      # canvas-facing color constants
 │   └── search-params.ts    # nuqs parsers
-├── e2e/                    # Playwright specs
-└── docs/                   # issues/, BRANCHING.md, assets/
+e2e/                        # Playwright specs
+docs/                       # issues/, releases/, BRANCHING.md, assets/
 ```
 
 ## Development docs
