@@ -136,7 +136,7 @@ This design system delivers the ergonomic rigor, spatial efficiency, and optical
 
 The visual style combines technical minimalism with high-precision instrumentation aesthetics:
 - **Zero-Blur Precision:** Avoid ambient blur, drop shadows, or fuzzy skeuomorphic lighting. Spatial relationships rely exclusively on hairline structural lines, discrete surface luminance shifts, and disciplined tabular packing.
-- **Instrument Signal Architecture:** Deep, light-absorbent base backgrounds anchor vibrant oscilloscope traces. High-energy spectral accents (cyan, pulse violet, live emerald, alert amber, critical crimson) serve functional data visualization purposes, immediately denoting sensor states, delta variations, and critical threshold breaches.
+- **Instrument Signal Architecture:** Deep, light-absorbent base backgrounds anchor vibrant oscilloscope traces. High-energy spectral accents (signal amber, trace steel, live green, warning orange, anomaly red) serve functional data visualization purposes, immediately denoting sensor states, delta variations, and critical threshold breaches.
 - **Operator Ergonomics:** Tailored for multi-monitor setups, dark environment operations centers, and extended tactical focus sessions. Contrast ratios exceed WCAG AAA standards for critical telemetry, eliminating visual fatigue while preserving instant peripheral recognition of state shifts.
 
 ## Colors

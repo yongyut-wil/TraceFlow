@@ -61,8 +61,11 @@ export class MockDataSource implements TimeSeriesDataSource {
   }
 
   subscribeStream(options: StreamSubscriptionOptions): () => void {
-    const { metric, afterTimestampMs, onBatch, onStatusChange } = options;
+    const { siteId, metric, afterTimestampMs, onBatch, onStatusChange } = options;
     const isLatency = metric.includes('latency');
+    // Per-site seed so different nodes produce distinct live traces,
+    // matching fetchHistorical's site hash.
+    const hash = siteId.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
 
     onStatusChange('connecting');
     const connectTimer = setTimeout(() => onStatusChange('connected'), 400);
@@ -80,8 +83,8 @@ export class MockDataSource implements TimeSeriesDataSource {
         lastTs = Math.max(now + i * 5, lastTs + 1);
 
         const timeRatio = lastTs / 10000;
-        const cycle = Math.sin(timeRatio);
-        const noise = Math.sin(lastTs / 7890) * 5;
+        const cycle = Math.sin(timeRatio + hash);
+        const noise = Math.sin(lastTs / 7890 + hash) * 5;
 
         let val = isLatency
           ? 45 + cycle * 15 + noise

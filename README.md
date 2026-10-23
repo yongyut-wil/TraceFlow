@@ -121,9 +121,9 @@ pnpm run build && pnpm start
 
 Derived from `.devin/stitch/DESIGN.md` — avionics/mission-control aesthetics:
 
-- **Surfaces** `#06090F` canvas → `#0D131F` panel → `#101B2C` raised → `#121A2A` focused → `#1A2438` elevated
-- **Border tiers** `#1E293B` structural · `#334155` interactive controls · signal-color accents
-- **Signals** cyan `#00E5FF` primary · violet `#818CF8` secondary · emerald `#10B981` live · amber `#F59E0B` warn · rose `#F43F5E` crit
+- **Surfaces** `#000` canvas → `#0B0B0E` panel → `#111116` focused → `#121218` raised → `#1C1C22` elevated
+- **Border tiers** `#1E1E24` structural · `#33333B` interactive controls · signal-color accents
+- **Signals** amber `#FFB000` primary · steel `#6FA8DC` secondary · green `#2FBF71` live · orange `#FB923C` warn · red `#E5484D` crit
 - **Type** IBM Plex Sans (UI) + IBM Plex Mono tabular-nums (data) — label-caps at 9–10px / `0.08em` tracking
 - **Rules** zero radius · no fuzzy shadows · hairlines only · `prefers-reduced-motion` honored
 
