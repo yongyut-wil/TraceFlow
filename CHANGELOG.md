@@ -5,6 +5,21 @@ versioning follows SemVer.
 
 ## [Unreleased]
 
+### Changed
+- **Terminal redesign (ISSUE-013):** palette moved from navy + neon cyan to
+  true-black canvas, warm-neutral zinc surface tiers, amber `#FFB000`
+  chrome/trace, steel-blue correlation, orange warn, warm ivory text —
+  DESIGN.md updated to the v2 Terminal scheme
+- Range selector renders as a function-key strip `[1H]…[CUSTOM]` with an
+  amber active key; wordmark gains a blinking block cursor (ISSUE-013)
+- Anomaly table uses zebra rows and right-aligned numeric columns (ISSUE-013)
+- All brand assets regenerated in the new palette (icon, logo, hero, mobile,
+  zoom-inspect, OG image, live-demo GIF) (ISSUE-013)
+
+### Added
+- Bottom terminal status bar: `TERM·01`, node id, buffered point count,
+  connection status, blinking cursor, live UTC clock (ISSUE-013)
+
 ### Fixed
 - Icon-only ZoomIn button now has `aria-label`; decorative icons marked
   `aria-hidden`; status badge is `aria-live` (ISSUE-012)

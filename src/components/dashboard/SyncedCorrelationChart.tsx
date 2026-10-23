@@ -57,8 +57,8 @@ export function SyncedCorrelationChart({ chartRef, metric, status }: SyncedCorre
           color: {
             type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
             colorStops: [
-              { offset: 0, color: 'rgba(129, 140, 248, 0.18)' },
-              { offset: 1, color: 'rgba(129, 140, 248, 0)' },
+              { offset: 0, color: 'rgba(111, 168, 220, 0.16)' },
+              { offset: 1, color: 'rgba(111, 168, 220, 0)' },
             ],
           },
         },

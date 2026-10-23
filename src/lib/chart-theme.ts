@@ -2,19 +2,19 @@
 // and cannot read CSS variables, so chart colors are centralized here to keep
 // them in sync with `src/app/globals.css` / `.devin/stitch/DESIGN.md`.
 export const CHART_COLORS = {
-  surface: '#06090F',
-  panel: '#0D131F',
-  panel2: '#121A2A',
-  panel3: '#1A2438',
-  border: '#1E293B',
-  borderAccent: '#334155',
-  gridLine: 'rgba(30, 41, 59, 0.55)',
-  textPrimary: '#F8FAFC',
-  textSecondary: '#94A3B8',
-  accent: '#00E5FF',
-  secondary: '#818CF8',
-  warn: '#F59E0B',
-  crit: '#F43F5E',
+  surface: '#000000',
+  panel: '#0B0B0E',
+  panel2: '#111116',
+  panel3: '#1C1C22',
+  border: '#1E1E24',
+  borderAccent: '#33333B',
+  gridLine: 'rgba(38, 38, 44, 0.7)',
+  textPrimary: '#F2EFE9',
+  textSecondary: '#9C9CA6',
+  accent: '#FFB000',
+  secondary: '#6FA8DC',
+  warn: '#FB923C',
+  crit: '#E5484D',
 } as const;
 
 export const CHART_FONT = 'JetBrains Mono';
