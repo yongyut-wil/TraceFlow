@@ -12,7 +12,7 @@ The system must render **10,000+ data points** smoothly at **60 FPS** with zero 
 - **Data Visualization:** Apache ECharts via modular `echarts/core` + `CanvasRenderer` ONLY. Never `import * as echarts from 'echarts'` and never use Recharts or Chart.js.
 - **State Management:**
   - Server Cache: `@tanstack/react-query`
-  - Client UI State: `zustand`
+  - Client UI State: React state/refs in components (zustand was dropped in ISSUE-012 — no cross-component client store exists)
   - URL Search Params: `nuqs` (`NuqsAdapter` for Next.js App Router)
 - **Data Layer (Hybrid B+C Architecture):**
   - Primary Backend: Supabase (PostgreSQL REST/RPC + Supabase Realtime)
@@ -36,7 +36,7 @@ The system must render **10,000+ data points** smoothly at **60 FPS** with zero 
    - All data fetching and streaming must go through the `TimeSeriesDataSource` interface (`SupabaseDataSource` and `MockDataSource`).
    - When merging 24-hour historical REST data with live WebSocket streams, deduplicate by enforcing `point[0] > lastTimestampMs`.
 5. **State & Component Boundaries:**
-   - Keep TanStack Query server state strictly separate from Zustand client state.
+   - Keep TanStack Query server state strictly separate from component-local client state.
    - Persist all shareable global filters (`from`, `to`, `siteId`, `metric`, `interval`) in the URL via `nuqs`.
    - Use React Server Components (RSC) for layout shells and static metadata; isolate `'use client'` strictly to interactive leaf widgets and chart containers.
 6. **Testing Requirement:**

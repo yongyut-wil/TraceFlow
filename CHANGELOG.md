@@ -3,6 +3,17 @@
 All notable changes to TraceFlow. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 versioning follows SemVer.
 
+## [Unreleased]
+
+### Added
+- GitHub Actions CI gate (`.github/workflows/ci.yml`) — lint, typecheck,
+  vitest, build, and playwright e2e on every push/PR (ISSUE-018)
+- `docs/assets/palette.svg` — terminal token swatch strip embedded in the
+  README design-system section
+
+### Changed
+- `AGENTS.md` tech stack no longer lists `zustand` (dropped in ISSUE-012)
+
 ## [0.4.1] - 2026-10-23
 
 Docs/design-system consistency patch — spec files now match the shipped
