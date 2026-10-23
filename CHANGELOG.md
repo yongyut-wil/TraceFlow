@@ -3,6 +3,13 @@
 All notable changes to TraceFlow. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 versioning follows SemVer.
 
+## [Unreleased]
+
+### Changed
+- CI job runs inside the official `mcr.microsoft.com/playwright` container —
+  chromium binaries and OS deps are baked in, replacing the browser cache
+  and apt `install-deps` step (ISSUE-018 follow-up)
+
 ## [0.4.2] - 2026-10-23
 
 CI enforcement and e2e expansion — every push/PR now runs the full local
