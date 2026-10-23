@@ -17,6 +17,8 @@ versioning follows SemVer.
 
 ### Changed
 - `AGENTS.md` tech stack no longer lists `zustand` (dropped in ISSUE-012)
+- Playwright `webServer` serves `pnpm run start` in CI — `next dev`
+  intermittently stalled in the Turbopack font replacer on runners
 
 ## [0.4.1] - 2026-10-23
 
