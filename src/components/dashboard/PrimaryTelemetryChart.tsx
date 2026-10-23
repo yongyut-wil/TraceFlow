@@ -69,15 +69,6 @@ export function PrimaryTelemetryChart({ chartRef, metric, thresholdWarning, thre
           animation: false,
           lineStyle: { color: CHART_COLORS.accent, width: 1.5 },
           itemStyle: { color: CHART_COLORS.accent },
-          areaStyle: {
-            color: {
-              type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
-              colorStops: [
-                { offset: 0, color: 'rgba(255, 176, 0, 0.14)' },
-                { offset: 1, color: 'rgba(255, 176, 0, 0)' },
-              ],
-            },
-          },
           ...(markLineData.length > 0 && {
             markLine: {
               silent: true,
@@ -96,7 +87,7 @@ export function PrimaryTelemetryChart({ chartRef, metric, thresholdWarning, thre
       <div className="flex h-8 items-center justify-between border-b border-border bg-muted/30 px-3">
         <div className="flex items-center gap-2">
           <span className="h-2 w-0.5 bg-primary" />
-          <span className="font-mono text-mini font-semibold uppercase tracking-[0.08em] text-foreground">Primary Telemetry Signal</span>
+          <span className="font-mono text-mini font-semibold uppercase tracking-[0.08em] text-primary">Primary Telemetry Signal</span>
           <span className="font-mono text-micro text-muted-foreground">{metric} · HISTORICAL + LIVE STREAM</span>
         </div>
         <div className="font-mono text-micro text-muted-foreground">LTTB · CANVAS · 10K PTS</div>

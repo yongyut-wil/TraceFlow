@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Providers } from "@/components/providers";
 
-const inter = Inter({
+const plexSans = IBM_Plex_Sans({
   variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const plexMono = IBM_Plex_Mono({
   variable: "--font-jetbrains-mono",
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -29,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} dark h-full antialiased`}
+      className={`${plexSans.variable} ${plexMono.variable} dark h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background">
         <TooltipProvider>

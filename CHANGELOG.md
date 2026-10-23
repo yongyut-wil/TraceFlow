@@ -6,6 +6,16 @@ versioning follows SemVer.
 ## [Unreleased]
 
 ### Changed
+- Typefaces swapped Inter/JetBrains Mono → **IBM Plex Sans/Mono** (terminal
+  heritage digit shapes) (ISSUE-014)
+- Chart traces render as flat lines — gradient glow fills removed; live
+  indicator uses a hard-step caret blink instead of the SaaS ping halo
+  (ISSUE-014)
+- KPI values carry their signal color directly (Bloomberg convention);
+  left accent borders and raised surfaces dropped; panel titles render in
+  brand amber (ISSUE-014)
+
+### Fixed
 - **Terminal redesign (ISSUE-013):** palette moved from navy + neon cyan to
   true-black canvas, warm-neutral zinc surface tiers, amber `#FFB000`
   chrome/trace, steel-blue correlation, orange warn, warm ivory text —
