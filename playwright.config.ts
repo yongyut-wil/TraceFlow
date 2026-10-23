@@ -12,7 +12,10 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   webServer: {
-    command: 'pnpm run dev',
+    // CI serves the verified production build (the workflow builds first):
+    // deterministic, faster, and avoids the dev-mode Turbopack font-replacer
+    // stall seen when a stale .next cache poisons `next dev` on runners.
+    command: process.env.CI ? 'pnpm run start' : 'pnpm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
