@@ -16,6 +16,12 @@ export default defineConfig({
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
+    env: {
+      // Force the unconfigured path so ?mode=supabase deterministically
+      // hits the error state even when a developer's .env.local exists.
+      NEXT_PUBLIC_SUPABASE_URL: '',
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: '',
+    },
   },
   projects: [
     {

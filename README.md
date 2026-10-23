@@ -11,7 +11,7 @@
 ![Next.js](https://img.shields.io/badge/Next.js_16-000?logo=next.js&logoColor=fff)
 ![React](https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=000)
 ![TypeScript](https://img.shields.io/badge/TypeScript_strict-3178C6?logo=typescript&logoColor=fff)
-![Tests](https://img.shields.io/badge/tests-34_unit_%2B_3_e2e-2FBF71)
+![Tests](https://img.shields.io/badge/tests-34_unit_%2B_12_e2e-2FBF71)
 ![License](https://img.shields.io/badge/license-MIT-FFB000)
 
 </div>
@@ -101,7 +101,7 @@ pnpm dev          # http://localhost:3000
 pnpm run lint         # eslint
 pnpm run typecheck    # tsc --noEmit
 pnpm test             # vitest — 34 unit tests
-pnpm test:e2e         # 3 playwright tests (needs dev server on :3000)
+pnpm test:e2e         # 12 playwright tests (auto-starts dev server on :3000)
 pnpm run build && pnpm start
 ```
 

@@ -10,6 +10,10 @@ versioning follows SemVer.
   vitest, build, and playwright e2e on every push/PR (ISSUE-018)
 - `docs/assets/palette.svg` — terminal token swatch strip embedded in the
   README design-system section
+- 9 new Playwright e2e tests (12 total): header selects, compare-chart
+  mount/unmount lifecycle, pause/resume stream freeze, unconfigured-supabase
+  error state, anomaly zoom action, invalid param fallback, inverted-range
+  clamp, KPI/status bar values, and mobile 390px overflow guard
 
 ### Changed
 - `AGENTS.md` tech stack no longer lists `zustand` (dropped in ISSUE-012)
