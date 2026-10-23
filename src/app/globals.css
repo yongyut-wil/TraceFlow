@@ -10,6 +10,14 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 
+  /* Type scale mirrors .devin/stitch/DESIGN.md typography tokens:
+     label-caps 9px · data-mono-sm 10px · data-mono-md 12px (text-xs)
+     · data-mono-xl → --text-value. Spacing scale maps 1:1 to Tailwind
+     steps (space-xs 2px=0.5 · sm 4px=1 · md 8px=2 · lg 12px=3 · xl 16px=4). */
+  --text-micro: 0.5625rem;
+  --text-mini: 0.625rem;
+  --text-value: 1.625rem;
+
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -54,7 +62,7 @@
   --muted: #121A2A;
   --muted-foreground: #94A3B8;
   --text-dim: #475569;
-  --accent: #121A2A;
+  --accent: #1A2438;
   --accent-foreground: #F8FAFC;
   --destructive: #F43F5E;
   --border: #1E293B;
@@ -78,6 +86,6 @@
     @apply font-sans antialiased;
   }
   .font-mono {
-    @apply tracking-tight tabular-nums;
+    @apply tabular-nums;
   }
 }

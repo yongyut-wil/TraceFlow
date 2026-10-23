@@ -69,12 +69,12 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
   };
 
   const rangeBtnClass = (active: boolean) =>
-    `px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring ${
+    `px-2 py-0.5 font-mono text-mini uppercase tracking-[0.08em] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring ${
       active ? 'bg-accent text-primary' : 'text-muted-foreground hover:text-foreground'
     }`;
 
   const dateInputClass =
-    'h-7 rounded-none border border-edge bg-background px-2 font-mono text-[10px] text-foreground';
+    'h-7 rounded-none border border-edge bg-background px-2 font-mono text-mini text-foreground';
 
   return (
     <header className="flex min-h-14 flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b border-border bg-card px-4 py-1 shrink-0">
@@ -129,10 +129,10 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
                 </PopoverTrigger>
                 <PopoverContent className="w-64 rounded-none border-border bg-popover shadow-none">
                   <div className="flex flex-col gap-2">
-                    <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+                    <span className="font-mono text-micro font-semibold uppercase tracking-[0.08em] text-muted-foreground">
                       Custom Range (local time)
                     </span>
-                    <label className="flex items-center justify-between gap-2 font-mono text-[10px] text-muted-foreground">
+                    <label className="flex items-center justify-between gap-2 font-mono text-mini text-muted-foreground">
                       FROM
                       <input
                         type="datetime-local"
@@ -141,7 +141,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
                         className={dateInputClass}
                       />
                     </label>
-                    <label className="flex items-center justify-between gap-2 font-mono text-[10px] text-muted-foreground">
+                    <label className="flex items-center justify-between gap-2 font-mono text-mini text-muted-foreground">
                       TO
                       <input
                         type="datetime-local"
@@ -174,14 +174,14 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
-        <Badge variant="outline" className={`h-6 rounded-none font-mono text-[9px] uppercase tracking-[0.08em] ${badge.className}`}>
+        <Badge variant="outline" className={`h-6 rounded-none font-mono text-micro uppercase tracking-[0.08em] ${badge.className}`}>
           <Database className="mr-1 h-3 w-3" />
           {badge.label}
         </Badge>
 
         <Badge
           variant="outline"
-          className={`h-6 rounded-none font-mono text-[9px] uppercase tracking-[0.08em] ${
+          className={`h-6 rounded-none font-mono text-micro uppercase tracking-[0.08em] ${
             status === 'connected' && !isPaused
               ? 'border-live/50 bg-live/10 text-live'
               : 'border-warn/50 bg-warn/10 text-warn'
@@ -200,7 +200,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
           {isPaused ? 'PAUSED' : status}
         </Badge>
 
-        <div className="font-mono text-[10px] text-muted-foreground">
+        <div className="font-mono text-mini text-muted-foreground">
           {bufferInfo}
         </div>
 

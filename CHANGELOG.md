@@ -3,6 +3,17 @@
 All notable changes to TraceFlow. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 versioning follows SemVer.
 
+## [Unreleased]
+
+### Changed
+- `--accent` now maps to spec L3 `#1A2438` (hover/active tier) — was L2
+  `#121A2A` (ISSUE-011)
+- Type scale tokenized: `--text-micro`/`--text-mini`/`--text-value` replace
+  all `text-[Npx]` literals; `.font-mono` drops blanket `tracking-tight`
+  for per-tier tracking (ISSUE-011)
+- `ZoomIn` row action uses a real `<Tooltip>` instead of `title=`
+  (ISSUE-011)
+
 ## [0.3.0] - 2025-10-22
 
 Polish release — 13-viewport responsive audit, design-token hygiene, and a

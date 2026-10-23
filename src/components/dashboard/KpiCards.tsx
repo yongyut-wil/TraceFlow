@@ -62,7 +62,7 @@ export function KpiCards({ stats, unit, isLoading }: KpiCardsProps) {
       {cards.map((c) => (
         <Card key={c.title} className={`rounded-none border-border border-l-2 bg-raised shadow-none ${c.accent}`}>
           <CardHeader className="flex flex-row items-center justify-between border-b border-border bg-muted/30 px-3 py-2">
-            <CardTitle className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+            <CardTitle className="font-mono text-mini font-semibold uppercase tracking-[0.08em] text-muted-foreground">
               {c.title}
             </CardTitle>
             {c.icon}
@@ -71,11 +71,11 @@ export function KpiCards({ stats, unit, isLoading }: KpiCardsProps) {
             {isLoading ? (
               <Skeleton className="h-8 w-24 rounded-none" />
             ) : (
-              <div className={`font-mono text-[26px] leading-8 font-medium tracking-tight ${c.value === '--' ? 'text-dim' : 'text-foreground'}`}>
+              <div className={`font-mono text-value leading-8 font-medium tracking-tight ${c.value === '--' ? 'text-dim' : 'text-foreground'}`}>
                 {c.value} <span className="text-xs text-muted-foreground">{c.unit}</span>
               </div>
             )}
-            <div className={`mt-1 font-mono text-[10px] ${c.subClass}`}>{c.sub}</div>
+            <div className={`mt-1 font-mono text-mini ${c.subClass}`}>{c.sub}</div>
           </CardContent>
         </Card>
       ))}
