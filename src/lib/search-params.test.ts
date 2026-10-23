@@ -5,7 +5,6 @@ describe('dashboardSearchParams parsers', () => {
   it('rejects an unknown metric → falls back to the default', () => {
     expect(dashboardSearchParams.metric.parse('latency_ms')).toBe('latency_ms');
     expect(dashboardSearchParams.metric.parse('bogus')).toBeNull();
-    expect(dashboardSearchParams.metric.withDefault).toBeTruthy;
     expect(dashboardSearchParams.metric.defaultValue).toBe('latency_ms');
   });
 
