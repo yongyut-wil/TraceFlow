@@ -124,7 +124,7 @@ Derived from `.devin/stitch/DESIGN.md` — avionics/mission-control aesthetics:
 - **Surfaces** `#06090F` canvas → `#0D131F` panel → `#101B2C` raised → `#121A2A` focused → `#1A2438` elevated
 - **Border tiers** `#1E293B` structural · `#334155` interactive controls · signal-color accents
 - **Signals** cyan `#00E5FF` primary · violet `#818CF8` secondary · emerald `#10B981` live · amber `#F59E0B` warn · rose `#F43F5E` crit
-- **Type** Inter (UI) + JetBrains Mono tabular-nums (data) — label-caps at 9–10px / `0.08em` tracking
+- **Type** IBM Plex Sans (UI) + IBM Plex Mono tabular-nums (data) — label-caps at 9–10px / `0.08em` tracking
 - **Rules** zero radius · no fuzzy shadows · hairlines only · `prefers-reduced-motion` honored
 
 ## Project layout

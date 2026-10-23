@@ -72,7 +72,7 @@ export function AnomalyStreamTable({ anomalies, siteId, unit, status, onInspect 
                   </td>
                   <td className="px-2 py-2 text-muted-foreground sm:px-3">{siteId.toUpperCase().replaceAll('-', '_')}</td>
                   <td className="px-2 py-2 text-right text-foreground sm:px-3">{row.value.toFixed(1)} {unit}</td>
-                  <td className="px-2 py-2 text-right text-crit sm:px-3">{fmtDelta(row.deltaPct)}</td>
+                  <td className={`px-2 py-2 text-right sm:px-3 ${row.severity === 'CRIT' ? 'text-crit' : 'text-warn'}`}>{fmtDelta(row.deltaPct)}</td>
                   <td className="px-2 py-2 text-right sm:px-3">
                     <Tooltip>
                       <TooltipTrigger

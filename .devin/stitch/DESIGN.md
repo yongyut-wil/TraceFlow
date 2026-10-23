@@ -50,70 +50,70 @@ colors:
   surface-variant: '#31353c'
 typography:
   headline-xl:
-    fontFamily: Inter
+    fontFamily: IBM Plex Sans
     fontSize: 32px
     fontWeight: '600'
     lineHeight: 38px
     letterSpacing: -0.02em
   headline-xl-mobile:
-    fontFamily: Inter
+    fontFamily: IBM Plex Sans
     fontSize: 24px
     fontWeight: '600'
     lineHeight: 30px
     letterSpacing: -0.01em
   headline-lg:
-    fontFamily: Inter
+    fontFamily: IBM Plex Sans
     fontSize: 22px
     fontWeight: '600'
     lineHeight: 28px
     letterSpacing: -0.01em
   headline-md:
-    fontFamily: Inter
+    fontFamily: IBM Plex Sans
     fontSize: 16px
     fontWeight: '600'
     lineHeight: 22px
     letterSpacing: -0.005em
   body-lg:
-    fontFamily: Inter
+    fontFamily: IBM Plex Sans
     fontSize: 14px
     fontWeight: '400'
     lineHeight: 20px
   body-md:
-    fontFamily: Inter
+    fontFamily: IBM Plex Sans
     fontSize: 13px
     fontWeight: '400'
     lineHeight: 18px
   body-sm:
-    fontFamily: Inter
+    fontFamily: IBM Plex Sans
     fontSize: 11px
     fontWeight: '400'
     lineHeight: 16px
   data-mono-xl:
-    fontFamily: JetBrains Mono
+    fontFamily: IBM Plex Mono
     fontSize: 24px
     fontWeight: '500'
     lineHeight: 28px
     letterSpacing: -0.03em
   data-mono-lg:
-    fontFamily: JetBrains Mono
+    fontFamily: IBM Plex Mono
     fontSize: 16px
     fontWeight: '500'
     lineHeight: 20px
     letterSpacing: -0.02em
   data-mono-md:
-    fontFamily: JetBrains Mono
+    fontFamily: IBM Plex Mono
     fontSize: 12px
     fontWeight: '400'
     lineHeight: 16px
     letterSpacing: -0.01em
   data-mono-sm:
-    fontFamily: JetBrains Mono
+    fontFamily: IBM Plex Mono
     fontSize: 10px
     fontWeight: '400'
     lineHeight: 14px
     letterSpacing: 0em
   label-caps:
-    fontFamily: JetBrains Mono
+    fontFamily: IBM Plex Mono
     fontSize: 9px
     fontWeight: '600'
     lineHeight: 12px

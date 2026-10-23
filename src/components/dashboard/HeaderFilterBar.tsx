@@ -92,7 +92,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
           <SelectTrigger className="h-7 w-40 rounded-none border-edge bg-muted/50 font-mono text-xs">
             <SelectValue placeholder="Node" />
           </SelectTrigger>
-          <SelectContent className="rounded-none border-border bg-popover">
+          <SelectContent className="rounded-none border-border bg-popover shadow-none">
             <SelectItem value="node-us-east-01" className="font-mono text-xs">NODE_US_EAST_01</SelectItem>
             <SelectItem value="node-eu-west-02" className="font-mono text-xs">NODE_EU_WEST_02</SelectItem>
           </SelectContent>
@@ -102,7 +102,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
           <SelectTrigger className="h-7 w-44 rounded-none border-edge bg-muted/50 font-mono text-xs">
             <SelectValue placeholder="Metric" />
           </SelectTrigger>
-          <SelectContent className="rounded-none border-border bg-popover">
+          <SelectContent className="rounded-none border-border bg-popover shadow-none">
             {METRICS.map(m => (
               <SelectItem key={m.id} value={m.id} className="font-mono text-xs">{m.label}</SelectItem>
             ))}
@@ -113,7 +113,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
           <SelectTrigger className="h-7 w-40 rounded-none border-edge bg-muted/50 font-mono text-xs">
             <SelectValue placeholder="Compare" />
           </SelectTrigger>
-          <SelectContent className="rounded-none border-border bg-popover">
+          <SelectContent className="rounded-none border-border bg-popover shadow-none">
             {COMPARE_OPTIONS.map(m => (
               <SelectItem key={m} value={m} className="font-mono text-xs uppercase">{m === 'none' ? '— none' : m}</SelectItem>
             ))}
@@ -165,7 +165,7 @@ export function HeaderFilterBar({ status, sourceMode, isPaused, onTogglePause, b
           <SelectTrigger className="h-7 w-32 rounded-none border-edge bg-muted/50 font-mono text-xs">
             <SelectValue placeholder="Mode" />
           </SelectTrigger>
-          <SelectContent className="rounded-none border-border bg-popover">
+          <SelectContent className="rounded-none border-border bg-popover shadow-none">
             {DATA_MODES.map(m => (
               <SelectItem key={m} value={m} className="font-mono text-xs uppercase">{m}</SelectItem>
             ))}

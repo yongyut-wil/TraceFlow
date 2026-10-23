@@ -69,7 +69,7 @@ export function KpiCards({ stats, unit, isLoading }: KpiCardsProps) {
           </CardHeader>
           <CardContent className="p-3">
             {isLoading ? (
-              <Skeleton className="h-8 w-24 rounded-none" />
+              <Skeleton className="h-8 w-24 rounded-none bg-accent" />
             ) : (
               <div className={`font-mono text-value leading-8 font-medium tracking-tight ${c.value === '--' ? 'text-dim' : c.valueClass}`}>
                 {c.value} <span className="text-xs text-muted-foreground">{c.unit}</span>
