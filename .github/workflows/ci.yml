@@ -30,6 +30,13 @@ jobs:
 
       - run: pnpm run build
 
-      - run: pnpm exec playwright install --with-deps chromium
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+
+      # OS deps must reinstall every run (fresh VM); browser binaries are cached.
+      - run: pnpm exec playwright install-deps chromium
+      - run: pnpm exec playwright install chromium
 
       - run: pnpm test:e2e
