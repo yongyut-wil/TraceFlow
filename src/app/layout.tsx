@@ -32,6 +32,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       className={`${plexSans.variable} ${plexMono.variable} dark h-full antialiased`}
+      // The CSS pipeline drops `color-scheme`; set it inline so native
+      // controls (datetime picker, scrollbars) render dark chrome.
+      style={{ colorScheme: 'dark' }}
     >
       <body className="min-h-full flex flex-col bg-background">
         <TooltipProvider>

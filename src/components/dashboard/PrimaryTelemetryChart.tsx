@@ -19,12 +19,12 @@ export function PrimaryTelemetryChart({ chartRef, metric, thresholdWarning, thre
       thresholdWarning !== undefined && {
         yAxis: thresholdWarning,
         lineStyle: { color: CHART_COLORS.warn },
-        label: { show: true, position: 'insideStartTop' as const, formatter: `WARN ${thresholdWarning}ms`, color: CHART_COLORS.warn, fontFamily: CHART_FONT, fontSize: 9 },
+        label: { show: true, position: 'insideStartTop' as const, offset: [16, 0] as [number, number], formatter: `WARN ${thresholdWarning}ms`, color: CHART_COLORS.warn, fontFamily: CHART_FONT, fontSize: 9 },
       },
       thresholdCritical !== undefined && {
         yAxis: thresholdCritical,
         lineStyle: { color: CHART_COLORS.crit },
-        label: { show: true, position: 'insideStartTop' as const, formatter: `CRIT ${thresholdCritical}ms`, color: CHART_COLORS.crit, fontFamily: CHART_FONT, fontSize: 9 },
+        label: { show: true, position: 'insideStartTop' as const, offset: [16, 0] as [number, number], formatter: `CRIT ${thresholdCritical}ms`, color: CHART_COLORS.crit, fontFamily: CHART_FONT, fontSize: 9 },
       },
     ].filter((d): d is NonNullable<typeof d> => Boolean(d));
 

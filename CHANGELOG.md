@@ -5,6 +5,13 @@ versioning follows SemVer.
 
 ## [Unreleased]
 
+### Fixed
+- Element audit pass (ISSUE-015): `colorScheme: dark` on `<html>` so native
+  pickers/scrollbars render dark; markLine labels no longer clip at the grid
+  edge; anomaly DELTA column colors by row severity; select popovers drop
+  `shadow-md`; skeleton uses `bg-accent` for visibility on black; DESIGN.md /
+  README font references synced to IBM Plex
+
 ### Changed
 - Typefaces swapped Inter/JetBrains Mono → **IBM Plex Sans/Mono** (terminal
   heritage digit shapes) (ISSUE-014)

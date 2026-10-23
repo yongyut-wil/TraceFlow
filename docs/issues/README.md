@@ -19,6 +19,7 @@ files live in this directory, and status is mirrored here and in `CHANGELOG.md`.
 | [ISSUE-012](012-a11y-edge-polish.md) | a11y names/hidden icons, dim-contrast misuse, stale-series flash, loose URL params | Low | 🟢 Done | `fix/issue-012-a11y-edge` |
 | [ISSUE-013](013-terminal-redesign.md) | Redesign: navy/cyan AI-look → ops-terminal direction (black canvas, amber chrome, status line) | Medium | 🟢 Done | `fix/issue-013-terminal-redesign` |
 | [ISSUE-014](014-terminal-typography-glow.md) | De-AI pass 2: Plex type, flat traces, caret blink, signal-colored KPI values | Low | 🟢 Done | `fix/issue-014-terminal-type` |
+| [ISSUE-015](015-element-audit.md) | Element audit: color-scheme, markLine clip, delta semantics, select shadow, skeleton, font docs | Low | 🟢 Done | `fix/issue-015-element-audit` |
 
 **Status legend:** 🔵 Open · 🟡 In progress · 🟢 Done (merged) · ⚪ Won't fix
 
