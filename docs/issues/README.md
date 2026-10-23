@@ -15,6 +15,7 @@ files live in this directory, and status is mirrored here and in `CHANGELOG.md`.
 | [ISSUE-008](008-ui-polish-pack.md) | Responsive nits (select truncation, markLine clip, table width, touch targets) + token hygiene | Low | 🟢 Done | `fix/issue-008-ui-polish` |
 | [ISSUE-009](009-aesthetic-refinement.md) | Flat surfaces, bare neon trace, no signal linkage in KPI/panels | Low | 🟢 Done | `fix/issue-009-aesthetic-refinement` |
 | [ISSUE-010](010-border-icon-semantics.md) | Interactive controls indistinguishable from structural borders; mismatched KPI icons | Low | 🟢 Done | `fix/issue-010-border-icon-semantics` |
+| [ISSUE-011](011-design-system-completeness.md) | Spec gaps: accent tier, untokenized type scale, blanket mono tracking, dead tooltip | Low | 🟢 Done | `fix/issue-011-design-tokens` |
 
 **Status legend:** 🔵 Open · 🟡 In progress · 🟢 Done (merged) · ⚪ Won't fix
 

@@ -96,10 +96,10 @@ export function PrimaryTelemetryChart({ chartRef, metric, thresholdWarning, thre
       <div className="flex h-8 items-center justify-between border-b border-border bg-muted/30 px-3">
         <div className="flex items-center gap-2">
           <span className="h-2 w-0.5 bg-primary" />
-          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-foreground">Primary Telemetry Signal</span>
-          <span className="font-mono text-[9px] text-muted-foreground">{metric} · HISTORICAL + LIVE STREAM</span>
+          <span className="font-mono text-mini font-semibold uppercase tracking-[0.08em] text-foreground">Primary Telemetry Signal</span>
+          <span className="font-mono text-micro text-muted-foreground">{metric} · HISTORICAL + LIVE STREAM</span>
         </div>
-        <div className="font-mono text-[9px] text-muted-foreground">LTTB · CANVAS · 10K PTS</div>
+        <div className="font-mono text-micro text-muted-foreground">LTTB · CANVAS · 10K PTS</div>
       </div>
       <div className="flex-1 bg-background p-2">
         <EChartCanvas initialOption={option} chartInstanceRef={chartRef} group="traceflow-group" className="h-full" />
