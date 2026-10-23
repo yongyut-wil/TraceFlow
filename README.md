@@ -151,7 +151,7 @@ docs/                       # issues/, releases/, BRANCHING.md, assets/
 
 ## Development docs
 
-- [`docs/issues/`](docs/issues/README.md) — local issue tracker (16 closed)
+- [`docs/issues/`](docs/issues/README.md) — local issue tracker (18 closed)
 - [`docs/BRANCHING.md`](docs/BRANCHING.md) — trunk-based, `fix/issue-NNN-*`, `release/x.y.z`
 - [`CHANGELOG.md`](CHANGELOG.md) — Keep-a-Changelog + SemVer, latest **v0.4.0**
 - [`.devin/stitch/DESIGN.md`](.devin/stitch/DESIGN.md) — design token source of truth

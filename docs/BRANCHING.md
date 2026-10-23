@@ -2,6 +2,7 @@
 
 Trunk-based development. `master` is the single source of truth and must
 always pass: `lint` + `typecheck` + `vitest` + `playwright` + `build`.
+Enforced remotely by `.github/workflows/ci.yml` on every push/PR.
 
 ## Branch types
 
